@@ -1,0 +1,284 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsthm}
+
+\usepackage[letterpaper,margin=1in]{geometry}
+
+\usepackage{enumerate}
+
+      \theoremstyle{plain}
+      \newtheorem{theorem}{Theorem}
+      \newtheorem{lemma}[theorem]{Lemma}
+      \newtheorem{corollary}[theorem]{Corollary}
+      \newtheorem{proposition}[theorem]{Proposition}
+      \newtheorem{conjecture}[theorem]{Conjecture}
+      \newtheorem{question}[theorem]{Question}
+      \newtheorem{claim}[theorem]{Claim}
+
+      \theoremstyle{definition}
+      \newtheorem{definition}[theorem]{Definition}
+      \newtheorem{example}[theorem]{Example}
+      \newtheorem{observation}[theorem]{Observation}
+      \newtheorem{game}[theorem]{Game}
+
+      \theoremstyle{remark}
+      \newtheorem{remark}[theorem]{Remark}
+
+      \theoremstyle{plain}
+      \newtheorem*{theorem*}{Theorem}
+      \newtheorem*{lemma*}{Lemma}
+      \newtheorem*{corollary*}{Corollary}
+      \newtheorem*{proposition*}{Proposition}
+      \newtheorem*{conjecture*}{Conjecture}
+      \newtheorem*{question*}{Question}
+      \newtheorem*{claim*}{Claim}
+
+      \theoremstyle{definition}
+      \newtheorem*{definition*}{Definition}
+      \newtheorem*{example*}{Example}
+      \newtheorem*{observation*}{Observation}
+      \newtheorem*{game*}{Game}
+
+      \theoremstyle{remark}
+      \newtheorem*{remark*}{Remark}
+
+\title{Limited Information Strategies and Discrete Selectivity}
+\author{Jared Holshouser and Steven Clontz}
+
+\usepackage{../clontzDefinitions}
+
+\newcommand{\bmPoGame}[2]{BM_{po}(#1,#2)}
+
+\begin{document}
+
+\maketitle
+
+\section{2-marks in CD(X)}
+
+Let 
+\(
+  [f,F,\epsilon]
+    =
+  \{g\in C_p(X):|g(x)-f(x)|<\epsilon\text{ for all }x\in F\}
+\).
+
+\begin{game}
+  Let \(G\) be the following game. During round \(n\), player \(\plI\)
+  chooses \(\beta_n<\omega_1\), and player \(\plII\) chooses
+  \(F_n\in[\omega_1]^{<\aleph_0}\). \(\plII\) wins if
+  whenever \(\gamma<\beta_n\) for co-finitely many \(n<\omega\),
+  \(\gamma\in F_n\) for infinitely many \(n<\omega\).
+\end{game}
+
+For \(f\in\omega^\alpha\), let 
+\(f^{\leftarrow}[n]=\{\beta<\alpha:f(\beta)<n\}\).
+
+\begin{proposition}
+  \(\plII \kmarkwin{2} G\).
+\end{proposition}
+\begin{proof}
+  Let \(\{f_\alpha\in\omega^\alpha:\alpha<\omega_1\}\) be a collection
+  of pairwise almost-compatible finite-to-one functions.
+  Define a \(2\)-mark \(\sigma\) for \(\plII\) by
+  \[\sigma(\<\alpha\>,0)=\emptyset\] and
+  \[
+    \sigma(\<\alpha,\beta\>,n+1)\
+      =
+    f_\beta^\leftarrow[n]
+      \cup
+    \{\gamma<\alpha\cap\beta:f_\alpha(\gamma)\not=f_\beta(\gamma)\}
+  .\]
+  
+  Let \(\nu\) be an attack by \(\plI\) against \(\sigma\), and let
+  \(\gamma<\nu(n)\) for \(N\leq n<\omega\).
+  If \(f_{\nu(n)}(\gamma)\not=f_{\nu(n+1)}(\gamma)\) for infinitely-many
+  \(N\leq n<\omega\), then \(\gamma\in\sigma(\<\nu(n),\nu(n+1)\>,n+1)\)
+  for infinitely-many \(N\leq n<\omega\).
+  Otherwise \(f_{\nu(n)}(\gamma)=f_{\nu(n+1)}(\gamma)=M\) for cofinitely-many
+  \(N\leq n<\omega\), so \(\gamma\in\sigma(\<\nu(n),\nu(n+1)\>,n+1)\)
+  for cofinitely-many \(N\leq n<\omega\). Therefore \(\sigma\) is a winning \(2\)-mark.
+\end{proof}
+
+\begin{theorem}
+  \(\plI\kmarkwin{2}CD(C_p(\omega_1+1))\)
+\end{theorem}
+\begin{proof}
+  Let \(\sigma\) be a winning 2-mark for \(\plII\) in \(G\).
+
+  Given a point \(f\in C_p(\omega_1+1)\),
+  let \(\alpha_f<\omega_1\) satisfy \(f(\beta)=f(\gamma)\) for all
+  \(\alpha_f\leq\beta\leq\gamma\leq\omega_1\).
+
+  Let \(\tau(\emptyset,0)=[\mathbf{0},\{\omega_1\},4]\),
+  \(\tau(\<f\>,1)=[\mathbf{0};\sigma(\<\alpha_f\>,0)\cup\{\omega_1\};2]\), and
+  \[\tau(\<f,g\>,n+2)=[\mathbf{0};\sigma(\<\alpha_f,\alpha_g\>,n+1)\cup\{\omega_1\};2^{-n}].\]
+
+  Let \(\nu\) be a legal attack by \(\plII\) against \(\sigma\).
+  For \(\beta\leq\omega_1\), if \(\beta<\alpha_{\nu(n)}\)
+  for co-finitely many \(n<\omega\), then
+  \(\beta\in\sigma(\<\alpha_{\nu(n)},\alpha_{\nu(n+1)}\>)\) for
+  infinitely-many \(n<\omega\), and thus \(0\in\operatorname{cl}\{\nu(n)(\beta):n<\omega\}\).
+  Otherwise \(\beta\geq\alpha_{\nu(n)}\) for infinitely many \(n<\omega\),
+  and thus \(0\in\operatorname{cl}\{\nu(n)(\beta):n<\omega\}\) as well.
+  Thus \(\mathbf{0}\in\operatorname{cl}\{\nu(n):n<\omega\}\).
+\end{proof}
+
+\section{Combining game results}
+
+\begin{theorem}
+The following are equivalent for \(T_{3.5}\) spaces \(X\).
+\begin{enumerate}[a)]
+\item \(X\) is \(R^+\), that is, \(\plII\win \schStrongSelGame{\mc O_X}{\mc O_X}\).
+\item \(\plI\win PO(X)\). 
+\item \(\plI\win FO(X)\).
+\item \(\plI\win \gruConGame{C_p(X)}{\mathbf 0}\).
+\item \(\plI\win CL(C_p(X),\mathbf 0)\).
+\item \(\plI\win CD(C_p(X))\).
+\item \(X\) is \(\Omega R^+\), that is, 
+  \(\plII\win \schStrongSelGame{\Omega_X}{\Omega_X}\).
+\item \(C_p(X)\) is \(sCFT^+\), that is, 
+  \(\plII\win \schStrongSelGame{\Omega_{C_p(X),\mathbf 0}}{\Omega_{C_p(X),\mathbf 0}}\).
+\item \(C_p(X)\) is \(sCDFT^+\), that is,
+  \(\plII\win \schStrongSelGame{\mc D_{C_p(X)}}{\Omega_{C_p(X),\mathbf 0}}\).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  (a) \(\Leftrightarrow\) (b) is a well-known result of Galvin.
+
+  (b) \(\Leftrightarrow\) (c) is 4.3 of [Telgarksy 1975].
+
+  The equivalence of (b), (d), (e), and (f) are given as 3.8 of [Tkachuk 2017].
+
+  The equivalence of (g), (h), and (i) are due to Clontz.
+
+  (i) \(\Leftrightarrow\) (e) follows from 3.18a of [Tkachuk 2017].
+\end{proof}
+
+Let \(\Omega PO(X)\) be the point-open game where \(\plI\) wins
+if they force \(\plII\) to create an \(\omega\)-cover. Likewise for
+\(\Omega FO(X)\). In 3.9 of [Tkachuk 2017] it's shown that
+\(\plII\win\Omega FO(X)\) implies \(\plII\win CD(C_p(X))\).
+
+\begin{theorem}
+  Let \(X\) be \(T_{3.5}\).
+  Then \(\plI\win\Omega FO(X)\)
+  if and only if \(X\) is \(R^+\).
+\end{theorem}
+
+\begin{proof}
+  The forward implication holds because \(R^+\) is
+  equivalent to \(\plI\win FO(X)\).
+
+  So assume \(X\) is \(R^+\), which is equivalent to \(\Omega R^+\). 
+  Let \(\sigma\) be a winning strategy for \(\plII\) in 
+  \(\schStrongSelGame{\Omega_X}{\Omega_X}\). Let \(T(X)\) be the non-empty
+  open sets of \(X\), and let \(s\in T(X)^{<\omega}\).
+  Assume \(\tau(t)\in[X]^{<\omega}\) is defined for all \(t<s\),
+  and \(\mc U_t\in\Omega_X\) is defined for all 
+  \(\emptyset<t\leq s\). 
+
+  Suppose that for all \(F\in[X]^{<\omega}\), there existed \(U_F\in T(X)\)
+  containing \(F\) such that for all \(\mc U\in\Omega_X\),
+  \(U_F\not=\sigma(\<\mc U_{s\rest 1},\dots,U_s,\mc U\>)\).
+  Let \(\mc U=\{U_F:F\in[X]^{<\omega}\}\in\Omega_X\).
+  Then \(\sigma(\<\mc U_{s\rest 1},\dots,U_s,\mc U\>)\)
+  must equal some \(U_F\), demonstrating a contradiction.
+
+  So there exists \(\tau(s)\in[X]^{<\omega}\) such that for all \(U\in T(X)\)
+  containing \(\tau(s)\),
+  there exists \(\mc U_{s\concat\<U\>}\in\Omega_X\) such that
+  \(U=\sigma(\<\mc U_{s\rest 1},\dots,\mc U_s,\mc U_{s\concat\<U\>}\>)\).
+  (To complete the induction, \(\mc U_{s\concat\<U\>}\) may be chosen
+  arbitrarily for all other \(U\in T(X)\).)
+
+  So \(\tau\) is a strategy for \(\plI\) in \(\Omega FO(X)\).
+  Let \(\nu\) legally attack \(\tau\), so
+  \(\tau(\nu\rest n)\subseteq \nu(n)\) for all \(n<\omega\).
+  It follows that 
+  \(\nu(n)=\sigma(\<\mc U_{\nu\rest 1},\dots,\mc U_{\nu\rest n},\mc U_{\nu\rest n+1}\>)\).
+  Since \(\<\mc U_{\nu\rest 1},\mc U_{n\rest 2},\dots\>\) is a legal attack
+  against \(\sigma\), it follows that
+  \(\{\sigma(\<\mc U_{\nu\rest 1},\dots,\mc U_{\nu\rest n+1}\>):n<\omega\}=\{\nu(n):n<\omega\}\)
+  is an \(\omega\)-cover. Therefore \(\tau\) is a winning strategy, 
+  verifying \(\plI\win\Omega FO(X)\).
+\end{proof}
+
+In that paper, Tkachuk characterizes \(\plII\win\Omega FO(X)\)
+as the second player having an ``almost winning strategy''
+(\(\plII\) can prevent \(\plI\) from constructing an \(\omega\)-cover
+but perhaps not an arbitrary open cover)
+in \(PO(X)\), which he conflates with \(FO(X)\) as they are
+equivalent for ``completely'' winning perfect information strategies. 
+
+But they cannot be interchanged in general.
+Note that \(\plII\tactwin\Omega PO(2)\), where \(2\) is the two-point discrete space:
+let \(\sigma(\<x\>)=\{x\}\). Since every \(\omega\)-cover of \(2\) includes \(2\),
+and \(\sigma\) never produces \(2\), this is a winning tactic. But for the same
+reason, \(2\) is \(R^+\): it is legal to play \(2\) every round,
+which produces the \(\omega\)-cover \(\{2\}\).
+So \(\Omega PO(X)\) is a very different game than those described previously.
+
+\begin{theorem}
+Let \(X\) be \(T_{3.5}\). The following are equivalent.
+\begin{enumerate}[a)]
+\item \(\plII \win PO(X)\)
+\item \(\plII \win FO(X)\)
+\item \(\plII \win \Omega FO(X)\)
+\item \(\plII \win CD(C_p(X))\)
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) \(\Leftrightarrow\) (b) is due to Telgarksy [1975].
+(b) \(\Rightarrow\) (c) is immediate, and
+(c) \(\Rightarrow\) (d) was shown in [Tkachuk 2017].
+
+Assume (d), so
+let \(\sigma\) be a winning strategy for \(\plII\) in \(CD(C_p(X))\).
+Let \(s\in([X]^{<\omega})^{<\omega}\setminus\{\emptyset\}\).
+Let \(s'\in(T(C_p(X)))^{<\omega}\setminus\{\emptyset\}\)
+be defined by \[s'(n)=[\mathbf 0,\bigcup\{s(m):m\leq n\},1/2^{n+1}].\]
+Let \(\tau\) be the strategy for \(\plII\) in \(FO(X)\)
+be defined by \(\tau(s)=\sigma(s')^{\leftarrow}(-1/2^{|s|},1/2^{|s|})\).
+This is legal as 
+\(\sigma(s')\in s'(|s|-1)\subseteq[\mathbf 0,s(|s|-1),1/2^{|s|}]\)
+implies \(s(|s|-1)\subseteq\sigma(s')^{\leftarrow}(-1/2^{|s|},1/2^{|s|})\).
+
+Let \(\nu\in([X]^{<\omega})^\omega\) attack \(\tau\), and let
+\[\nu'(n)=[\mathbf 0,\bigcup\{\nu(m):m\leq n\},1/2^{n+1}].\]
+Let \(F\in[X]^{<\omega}\) and \(\epsilon>0\).
+If \(\{\tau(\nu\rest n+1):n<\omega\}\) is an open cover for \(X\),
+choose \(\frac{1}{\epsilon}<N<\omega\) such that 
+\[
+  F
+    \subseteq
+  \bigcup\{\tau(\nu\rest n+1):n\leq N\}
+    =
+  \bigcup\{\sigma(\nu'\rest n+1)^{\leftarrow}(-1/2^{n+1},1/2^{n+1}):n\leq N\}
+.\]
+
+TODO: not quite there...
+
+
+%Since \(\sigma\) is a winning strategy,
+%it follows that \(\{\sigma(\nu'\rest n+1):n<\omega\}\) is closed and
+%discrete in \(C_p(X)\). In particular, \(\mathbf 0\) is not a
+%limit point, so choose \(F\in[X]^{<\omega}\) and \(m<\omega\) such that 
+%\([\mathbf 0,F,1/2^m]\cap\{\sigma(\nu'\rest n+1):n<\omega\}=\emptyset\).
+%
+%For \(n<m\), it follows that
+%\(\sigma(\nu'\rest n+1)\in\nu'(n)\subseteq[\mathbf 0,\nu(n),1/2^{n+1}]\).
+%We also have \(\sigma(\nu'\rest n+1)\not\in[0,F,1/2^m]\subseteq[0,F,1/2^{n+1}]\),
+%so therefore \(F\not\subseteq \nu(n)\).
+\end{proof}
+
+  \bibliographystyle{plain}
+  \bibliography{../bibliography}
+
+
+\end{document}
