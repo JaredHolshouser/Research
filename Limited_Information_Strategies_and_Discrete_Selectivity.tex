@@ -520,11 +520,12 @@ The following are equivalent for all \(T_{3.5}\) spaces \(X\).
 \item \(\plI\win \rothGame{X}\)
 \item \(\plI\prewin \rothGame{X}\)
 \item \(\plII\markwin PO(X)\)
-\item \(\plII\markwin FO(X)\) TODO
+\item \(\plII\markwin FO(X)\)
 \end{enumerate}
+In particular, these are all equivalent to \(X\) not being \(R\).
 \end{theorem}
 \begin{proof}
-We've already seen (a) \(\Leftrightarrow\) (b).
+(a) \(\Leftrightarrow\) (b) is 4.4 of [Telgarksy 1975].
 
 The duality of \(PO(X)\) and \(\rothGame{X}\) for both players
 when considering perfect information is a well-known result of Galvin.
@@ -537,15 +538,72 @@ is equivalent to \(\plI\notprewin\rothGame{X}\).
 
 (d) and (e) were shown to be equivalent above.
 
-Finally, (f) implies (e) is obvious. And given a winning Markov strategy
-\(\sigma\) for \(\plII\) in \(PO(X)\), define 
-\(\tau(F,n)=\bigcup\{\sigma(x,(n+1)|F|):x\in F\}\). 
-Let \(f\) attack \(\tau\). Let \(b:\omega\to\omega\) be a bijection
-such that \(m\leq n\) implies \((b(m)+1)|f(b(m))|\leq(b(n)+1)|f(b(n))|\).
-TODO hopefully this works...
+Finally, (f) implies (e) is obvious. 
+Let \(b:\omega^2\to\omega\) be a bijection.
+Given a winning Markov strategy \(\sigma\) for \(\plII\) in \(PO(X)\),
+define \(\tau(F_n,n)=\bigcup\{\sigma(x(i,n),b(i,n)):i<\omega\}\)
+where \(F_n=\{x(i,n):i<\omega\}\) (this indexing will cause at least one 
+point to be repeated infinitely often, but this won't be a problem). 
+So given an attack \(\<F_0,F_1,\dots\>\) \
+against \(\tau\), consider the attack \(g\) against \(\sigma\), 
+where \(g(n)=x_{b^{\leftarrow}(n)}\). It follows that
+\[
+  X
+    \not=
+  \bigcup\{\sigma(g(n),n):n<\omega\}
+    =
+  \bigcup\{\sigma(x(i,n),b(i,n)):i,n<\omega\}
+    =
+  \bigcup\{\tau(F_n,n):n<\omega\}
+\]
+and therefore \(\tau\) is a winning Markov strategy for \(\plII\).
+Thus (e) implies (f).
 \end{proof}
 
 All these statements are just asserting that \(X\) is not Rothberger.
+
+\begin{theorem}
+The following are equivalent for all \(T_{3.5}\) spaces \(X\).
+\begin{enumerate}[a)]
+\item \(\plII\win \Omega FO(X)\)
+\item \(\plI\win G_1(\Omega_X,\Omega_X)\)
+\item \(\plI\prewin G_1(\Omega_X,\Omega_X)\)
+\item \(\plII\markwin \Omega FO(X)\)
+\end{enumerate}
+In particular, these are all equivalent to \(X\) not being \(\Omega R\).
+\end{theorem}
+\begin{proof}
+Let \(\sigma\) be a winning strategy for \(\plII\) in \(\Omega FO(X)\).
+For \(s\in([X]^{<\omega})^{<\omega}\), let 
+\(\mc U_s=\{\sigma(s\concat\<F\>:F\in[X]^{<\omega}\}\).
+Then define the strategy \(\tau\) for \(\plI\) by 
+\(\tau(s)=\sigma(\<\mc U_{s\rest 0},\dots,\mc U_s\>)\).
+Then every attack \(f\) against \(\tau\) yields \(g\in([X]^{<\omega})^\omega\)
+such that \(f(n)=\sigma(g\rest n+1)\). Thus 
+\(\{f(n):n<\omega\}=\{\sigma(g\rest n+1):n<\omega\}\)
+is not an \(\omega\)-cover, so \(\tau\) is a winning strategy,
+verifying that (a) implies (b).
+
+The equivalence of (b) and (c) is given by Thm2 of
+[Scheepers Comb. of Open Covers III].
+
+Let \(\sigma\) be a winning predetermined strategy for \(\plI\)
+in \(G_1(\Omega_x,\Omega_x)\). For \(F\in[X]^{<\omega}\) and
+\(n<\omega\), let \(\tau(F,n)\) be any open set in \(\sigma(n)\)
+containing \(F\). It follows that \(\tau\) is a winning Markov
+strategy for \(\plII\) in \(\Omega FO(X)\), verifying that
+(c) implies (d).
+
+(d) implies (a) is trivial, so the proof is complete.
+\end{proof}
+
+\(\Omega R\) is equivalent to all finite powers being \(R\).
+These notions cannot coincide: see Thm9 of 
+[http://dx.doi.org/10.1016/j.topol.2013.07.022] 
+for a consisent example of a \(R\) space whose square
+is not \(R\). Note the distinction here, as \(R^+\) is
+equivalent to \(\Omega R^+\) and \(R^{+mark}\) is
+equivalent to \(\Omega R^{+mark}\).
 
 \begin{theorem}
 \(\plII\win\gruConGame{X}{x}\) if and only if
@@ -561,90 +619,6 @@ It follows that \(\sigma\) is a winning Markov strategy
 for \(\plII\).
 \end{proof}
 
-\section{incomplete, possibly incorrect results}
-\begin{theorem}
-MAYBE? TODO...
-
-For \(T_{3.5}\) spaces \(X\),
-\(\plII\win PO(X)\) if and only if
-\(\plII\win\gruConGame{C_p(X)}{\mathbb 0}\).
-\end{theorem}
-\begin{proof}
-Let \(\sigma\) be a winning Markov strategy for \(\plII\)
-in \(FO(X)\). Then for \([\mathbb 0,F,\epsilon]\)
-and \(n<\omega\), let 
-\(\tau([\mathbb 0,F,\epsilon],n)(x)=0\) for \(x\in F\), and
-\(\tau([\mathbb 0,F,\epsilon],n)(x)=1\) for 
-\(x\in X\setminus\sigma(F,n)\). Since for any
-attack \(f\) defined by \(f(n)=[\mathbb 0,F_n,\epsilon_n]\),
-it follows that \(\{\sigma(F_n,n):n<\omega\}\) is not
-a cover of \(X\), there exists \(x\in X\) such that
-\(\tau(f(n),n)(x)=1\) for all \(n<\omega\). Thus
-\(\tau\) is a winning Markov strategy for \(\plII\).
-
-Let \(\sigma\) be a Markov strategy for \(\plII\)
-in \(\gruConGame{C_p(X)}{\mathbb 0}\).
-Let \(\tau(n)=\{\sigma([\mathbb 0,\{x\},1/2^n],n)^{\leftarrow}(-1/2^n,1/2^n):x\in X\}\).
-Let \(f\) attack \(\tau\), so \(f(n)\in\tau(n)\) for \(n<\omega\).
-Suppose \(\tau\) was a winning predetermined strategy for \(\plII\) in
-the \(\Omega\) Rothberger game. Then for \(x\in X\),
-\(x\in f(n)\) for some \(n<\omega\).
-\end{proof}
-
-
-\begin{theorem}
-Let \(X\) be \(T_{3.5}\). The following are equivalent.
-\begin{enumerate}[a)]
-\item \(\plII \win PO(X)\)
-\item \(\plII \win FO(X)\)
-\item \(\plII \win \Omega FO(X)\)
-\item \(\plII \win CD(C_p(X))\)
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}
-(a) \(\Leftrightarrow\) (b) is due to Telgarksy [1975].
-(b) \(\Rightarrow\) (c) is immediate, and
-(c) \(\Rightarrow\) (d) was shown in [Tkachuk 2017].
-
-Assume (d), so
-let \(\sigma\) be a winning strategy for \(\plII\) in \(CD(C_p(X))\).
-Let \(s\in([X]^{<\omega})^{<\omega}\setminus\{\emptyset\}\).
-Let \(s'\in(T(C_p(X)))^{<\omega}\setminus\{\emptyset\}\)
-be defined by \[s'(n)=[\mathbf 0,\bigcup\{s(m):m\leq n\},1/2^{n+1}].\]
-Let \(\tau\) be the strategy for \(\plII\) in \(FO(X)\)
-be defined by \(\tau(s)=\sigma(s')^{\leftarrow}(-1/2^{|s|},1/2^{|s|})\).
-This is legal as 
-\(\sigma(s')\in s'(|s|-1)\subseteq[\mathbf 0,s(|s|-1),1/2^{|s|}]\)
-implies \(s(|s|-1)\subseteq\sigma(s')^{\leftarrow}(-1/2^{|s|},1/2^{|s|})\).
-
-Let \(\nu\in([X]^{<\omega})^\omega\) attack \(\tau\), and let
-\[\nu'(n)=[\mathbf 0,\bigcup\{\nu(m):m\leq n\},1/2^{n+1}].\]
-Let \(F\in[X]^{<\omega}\) and \(\epsilon>0\).
-If \(\{\tau(\nu\rest n+1):n<\omega\}\) is an open cover for \(X\),
-choose \(\frac{1}{\epsilon}<N<\omega\) such that 
-\[
-  F
-    \subseteq
-  \bigcup\{\tau(\nu\rest n+1):n\leq N\}
-    =
-  \bigcup\{\sigma(\nu'\rest n+1)^{\leftarrow}(-1/2^{n+1},1/2^{n+1}):n\leq N\}
-.\]
-
-TODO: not quite there...
-
-
-%Since \(\sigma\) is a winning strategy,
-%it follows that \(\{\sigma(\nu'\rest n+1):n<\omega\}\) is closed and
-%discrete in \(C_p(X)\). In particular, \(\mathbf 0\) is not a
-%limit point, so choose \(F\in[X]^{<\omega}\) and \(m<\omega\) such that 
-%\([\mathbf 0,F,1/2^m]\cap\{\sigma(\nu'\rest n+1):n<\omega\}=\emptyset\).
-%
-%For \(n<m\), it follows that
-%\(\sigma(\nu'\rest n+1)\in\nu'(n)\subseteq[\mathbf 0,\nu(n),1/2^{n+1}]\).
-%We also have \(\sigma(\nu'\rest n+1)\not\in[0,F,1/2^m]\subseteq[0,F,1/2^{n+1}]\),
-%so therefore \(F\not\subseteq \nu(n)\).
-\end{proof}
 
   \bibliographystyle{plain}
   \bibliography{../bibliography}
