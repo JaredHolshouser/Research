@@ -370,6 +370,52 @@ The following are equivalent for \(T_{3.5}\) spaces \(X\).
 \end{enumerate}
 \end{theorem}
 
+Clontz came across these in grad school (didn't make it into the dissertation):
+
+\renewcommand{\rothGame}[1]{\ensuremath{G_1(\mc O_{#1},\mc O_{#1})}}
+\begin{theorem}
+\(\plI\prewin PO(X)\) if and only if \(\plII\markwin\rothGame{X}\).
+\end{theorem} 
+\begin{proof}
+Let \(\sigma\) be a winning Markov strategy for \(\plII\) in \(\rothGame{X}\).
+Let \(n<\omega\). Suppose that for each \(x\in X\), there was an open neighborhood 
+\(U_x\) of \(x\) where for every open cover \(\mc U\), \(\sigma(\mc U,n)\not=U_x\). 
+Then \(\sigma(\{U_x : x\in X\},n)\not\in\{U_x:x\in X\}\), a contradiction.
+
+So for each \(n<\omega\), there exists \(\tau(n)\in X\) such that for any
+open neighborhood \(U\) of \(\tau(n)\), there exists an open cover \(\mc U_n\)
+such that \(\sigma(\mc U_n,n)=U\). Then \(\tau\) is a predetermined strategy for
+\(\plI\) in \(PO(X)\).
+
+It is also winning: for every attack \(f\) against \(\tau\), note that
+\(f(n)\) is an open neighborhood of \(\tau(n)\), so choose \(\mc U_n\)
+such that \(\sigma(\mc U_n,n)=f(n)\). Then since \(\<\mc U_0,\mc U_1,\dots\>\)
+is a legal attack against \(\sigma\), it follows that \(\{f(n):n<\omega\}\)
+is an open cover of \(X\). Therefore \(\tau\) is a winning predetermined
+strategy.
+
+Now let \(\sigma\) be a winning predetermined strategy for \(\plI\) in \(PO(X)\).
+For an open cover \(\mc U\) of \(X\) and \(n<\omega\), let \(\tau(\mc U,n)\)
+be any open set in \(\mc U\) containing \(\sigma(n)\). It follows
+that \(\tau\) is a winning Markov strategy for \(\plII\) in \(\rothGame{X}\).
+\end{proof}
+
+\begin{theorem}
+\(\plII\markwin PO(X)\) if and only if \(\plI\prewin\rothGame{X}\).
+\end{theorem}
+\begin{proof}
+Let \(\sigma\) be a winning predetermined strategy for \(\plI\) in \(\rothGame{X}\).
+For \(x\in X\) and \(n<\omega\), let \(\tau(x,n)\) be any open set in \(\sigma(n)\)
+containing \(x\). It follows that \(\tau\) is a winning Markov strategy for
+\(\plII\) in \(PO(X)\).
+
+Now let \(\sigma\) be a winning Markov strategy for \(\plII\) in \(PO(X)\).
+We may defined the open cover \(\tau(n)=\{\sigma(x,n):x\in X\}\) of \(X\).
+It follows that \(\tau\) is a winning predetermined strategy for \(\plI\)
+in \(\rothGame{X}\).
+\end{proof}
+
+
 Combining with several other results in the literature,
 we may observe the following.
 
@@ -392,7 +438,14 @@ The following are equivalent for \(T_{3.5}\) spaces \(X\).
 \end{theorem}
 
 \begin{proof}
-The equivalence of (a) - (c) is contained in Clontz' dissertation.
+(a) implies (c) is straight-forward. So let
+\(\sigma\) be a predetermined strategy for \(\plI\) in \(PO(X)\).
+If \(x\not\in\{\sigma(n):n<\omega\}\), let \(f(n)=X\setminus\{x\}\)
+for all \(n<\omega\). It follows that \(f\) is a legal
+counter-attack for \(\plII\) defeating \(\sigma\). Thus not (a) implies
+not (c).
+
+The equivalence of (b) and (c) was shown above.
 
 Clearly (c) implies (d), so we will see that (d) implies (a).
 Let \(\sigma(n)\) be a pre-determined strategy for I for \(FO(X)\).
@@ -455,6 +508,89 @@ and \(\sigma\) never produces \(2\), this is a winning tactic. But for the same
 reason, \(2\) is \(R^+\): it is legal to play \(2\) every round,
 which produces the \(\omega\)-cover \(\{2\}\).
 So \(\Omega PO(X)\) is a very different game than those described previously.
+
+
+Now we turn our attention to the opponent.
+
+\begin{theorem}
+The following are equivalent for all \(T_{3.5}\) spaces \(X\).
+\begin{enumerate}[a)]
+\item \(\plII\win FO(X)\)
+\item \(\plII\win PO(X)\)
+\item \(\plI\win \rothGame{X}\)
+\item \(\plI\prewin \rothGame{X}\)
+\item \(\plII\markwin PO(X)\)
+\item \(\plII\markwin FO(X)\) TODO
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We've already seen (a) \(\Leftrightarrow\) (b).
+
+The duality of \(PO(X)\) and \(\rothGame{X}\) for both players
+when considering perfect information is a well-known result of Galvin.
+So (b) is equivalent to (c).
+
+The equivalence of (c) and (d) is just a restatement of Pawlikowski's
+result that the Rothberger selection principle is equivalent
+to \(\plI\notwin \rothGame{X}\), since the Rothberger selection principle
+is equivalent to \(\plI\notprewin\rothGame{X}\).
+
+(d) and (e) were shown to be equivalent above.
+
+Finally, (f) implies (e) is obvious. And given a winning Markov strategy
+\(\sigma\) for \(\plII\) in \(PO(X)\), define 
+\(\tau(F,n)=\bigcup\{\sigma(x,(n+1)|F|):x\in F\}\). 
+Let \(f\) attack \(\tau\). Let \(b:\omega\to\omega\) be a bijection
+such that \(m\leq n\) implies \((b(m)+1)|f(b(m))|\leq(b(n)+1)|f(b(n))|\).
+TODO hopefully this works...
+\end{proof}
+
+All these statements are just asserting that \(X\) is not Rothberger.
+
+\begin{theorem}
+\(\plII\win\gruConGame{X}{x}\) if and only if
+\(\plII\markwin\gruConGame{X}{x}\)
+\end{theorem}
+\begin{proof}
+If \(\plII\win\gruConGame{X}{x}\), then by
+[https://doi.org/10.1016/0016-660X(78)90032-6]
+there exist sets \(A_n\) for \(n<\omega\) such
+that \(x\in cl(A_n)\), but for all \(x_n\in A_n\),
+\(x_n\not\to x\). So let \(\sigma(U,n)\in A_n\cap U\).
+It follows that \(\sigma\) is a winning Markov strategy
+for \(\plII\).
+\end{proof}
+
+\section{incomplete, possibly incorrect results}
+\begin{theorem}
+MAYBE? TODO...
+
+For \(T_{3.5}\) spaces \(X\),
+\(\plII\win PO(X)\) if and only if
+\(\plII\win\gruConGame{C_p(X)}{\mathbb 0}\).
+\end{theorem}
+\begin{proof}
+Let \(\sigma\) be a winning Markov strategy for \(\plII\)
+in \(FO(X)\). Then for \([\mathbb 0,F,\epsilon]\)
+and \(n<\omega\), let 
+\(\tau([\mathbb 0,F,\epsilon],n)(x)=0\) for \(x\in F\), and
+\(\tau([\mathbb 0,F,\epsilon],n)(x)=1\) for 
+\(x\in X\setminus\sigma(F,n)\). Since for any
+attack \(f\) defined by \(f(n)=[\mathbb 0,F_n,\epsilon_n]\),
+it follows that \(\{\sigma(F_n,n):n<\omega\}\) is not
+a cover of \(X\), there exists \(x\in X\) such that
+\(\tau(f(n),n)(x)=1\) for all \(n<\omega\). Thus
+\(\tau\) is a winning Markov strategy for \(\plII\).
+
+Let \(\sigma\) be a Markov strategy for \(\plII\)
+in \(\gruConGame{C_p(X)}{\mathbb 0}\).
+Let \(\tau(n)=\{\sigma([\mathbb 0,\{x\},1/2^n],n)^{\leftarrow}(-1/2^n,1/2^n):x\in X\}\).
+Let \(f\) attack \(\tau\), so \(f(n)\in\tau(n)\) for \(n<\omega\).
+Suppose \(\tau\) was a winning predetermined strategy for \(\plII\) in
+the \(\Omega\) Rothberger game. Then for \(x\in X\),
+\(x\in f(n)\) for some \(n<\omega\).
+\end{proof}
+
 
 \begin{theorem}
 Let \(X\) be \(T_{3.5}\). The following are equivalent.
