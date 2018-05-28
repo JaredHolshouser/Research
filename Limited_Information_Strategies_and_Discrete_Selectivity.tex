@@ -297,14 +297,6 @@ For \(f\in\omega^\alpha\), let
 \begin{theorem}
 The following are equivalent for \(T_{3.5}\) spaces \(X\).
 \begin{enumerate}[a)]
-\item \(X\) is uncountable.
-\item \(C_p(X)\) has discrete selectivity.
-\end{enumerate}
-\end{theorem}
-
-\begin{theorem}
-The following are equivalent for \(T_{3.5}\) spaces \(X\).
-\begin{enumerate}[a)]
 \item \(X\) is \(R^+\), that is, \(\plII\win \schStrongSelGame{\mc O_X}{\mc O_X}\).
 \item \(\plI\win PO(X)\). 
 \item \(\plI\win FO(X)\).
@@ -367,6 +359,20 @@ The following are equivalent for \(T_{3.5}\) spaces \(X\).
   (j) \(\Leftrightarrow\) (f) follows from 3.18a of [Tkachuk 2017].
 \end{proof}
 
+Tkachuk showed the following in [CLOSEDDISCRETESELECTIONS].
+
+\begin{theorem}
+The following are equivalent for \(T_{3.5}\) spaces \(X\).
+\begin{enumerate}[a)]
+\item \(X\) is uncountable.
+\item \(C_p(X)\) has discrete selectivity, that is,
+      \(\plI\notprewin CD(C_p(X))\).
+\end{enumerate}
+\end{theorem}
+
+Combining with several other results in the literature,
+we may observe the following.
+
 \begin{theorem}
 The following are equivalent for \(T_{3.5}\) spaces \(X\).
 \begin{enumerate}[a)]
@@ -408,19 +414,18 @@ It is well-known and easy to see that (a) is equivalent to (f).
 To see that (f) implies (g), note that we can find a sequence of open sets \(U_n\) so that \(\mathbf 0 \in U_{n+1} \subseteq \overline{U_{n+1}} \subseteq U_n\) for all \(n\).
 I simply plays \(U_n\) are turn \(n\), and whatever \(x_n\) are played by II must converge to \(x\).
 
-Clearly (g) implies (h) which in turn implies (i).
-
-We now show that (i) implies (a).
-Let \(\sigma(n)\) be a pre-determined strategy for I for \(CD(C_p(X))\).
-Towards a contradiction suppose \(X\) is uncountable.
-Without loss of generality we can assume that \(\sigma(n)\) is a basic open set, \([f_n,F_n,\varepsilon_n]\).
-If I is not already playing basic open sets, we can choose basic open subsets of I's play, and the resulting game will still produce a a sequence \(\{x_n : n \in \omega\}\) which is not closed discrete.
-Let \(F = \bigcup_n F_n\).
-As \(X\) is uncountable, we can choose a point \(x \in X \smallsetminus F\).
-Then II can play against \(\sigma\) by playing a function \(g_n\) at round \(n\) with the properties that \(g_n \in [f_n,F_n,\varepsilon_n]\) and \(g_n(x) = n\).
-The collection \(\{g_n : n \in \omega\}\) is then closed discrete, and so I has lost.
-This is a contradiction, so \(X\) must be countable.
-Thus (a) - (i) are equivalent.
+Clearly (g) implies (h) which in turn implies (i), which is
+equivalent to (a) by [CLOSEDDISCRETESELECTIONS] 
+%Let \(\sigma(n)\) be a pre-determined strategy for I for \(CD(C_p(X))\).
+%Towards a contradiction suppose \(X\) is uncountable.
+%Without loss of generality we can assume that \(\sigma(n)\) is a basic open set, \([f_n,F_n,\varepsilon_n]\).
+%If I is not already playing basic open sets, we can choose basic open subsets of I's play, and the resulting game will still produce a a sequence \(\{x_n : n \in \omega\}\) which is not closed discrete.
+%Let \(F = \bigcup_n F_n\).
+%As \(X\) is uncountable, we can choose a point \(x \in X \smallsetminus F\).
+%Then II can play against \(\sigma\) by playing a function \(g_n\) at round \(n\) with the properties that \(g_n \in [f_n,F_n,\varepsilon_n]\) and \(g_n(x) = n\).
+%The collection \(\{g_n : n \in \omega\}\) is then closed discrete, and so I has lost.
+%This is a contradiction, so \(X\) must be countable.
+%Thus (a) - (i) are equivalent.
 
 Clontz showed that (j), (k), and (l) are equivalent.
 
