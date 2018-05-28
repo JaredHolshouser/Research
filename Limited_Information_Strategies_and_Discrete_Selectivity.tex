@@ -504,16 +504,15 @@ equivalent for ``completely'' winning perfect information strategies.
 But they cannot be interchanged in general.
 Note that \(\plII\tactwin\Omega PO(2)\), where \(2\) is the two-point discrete space:
 let \(\sigma(\<x\>)=\{x\}\). Since every \(\omega\)-cover of \(2\) includes \(2\),
-and \(\sigma\) never produces \(2\), this is a winning tactic. But for the same
-reason, \(2\) is \(R^+\): it is legal to play \(2\) every round,
-which produces the \(\omega\)-cover \(\{2\}\).
+and \(\sigma\) never produces \(2\), this is a winning tactic. But since \(2\)
+is countable, \(2\) is \(\Omega R^{+mark}\).
 So \(\Omega PO(X)\) is a very different game than those described previously.
 
 
 Now we turn our attention to the opponent.
 
 \begin{theorem}
-The following are equivalent for all \(T_{3.5}\) spaces \(X\).
+The following are equivalent for all spaces \(X\).
 \begin{enumerate}[a)]
 \item \(\plII\win FO(X)\)
 \item \(\plII\win PO(X)\)
@@ -560,10 +559,8 @@ and therefore \(\tau\) is a winning Markov strategy for \(\plII\).
 Thus (e) implies (f).
 \end{proof}
 
-All these statements are just asserting that \(X\) is not Rothberger.
-
 \begin{theorem}
-The following are equivalent for all \(T_{3.5}\) spaces \(X\).
+The following are equivalent for all spaces \(X\).
 \begin{enumerate}[a)]
 \item \(\plII\win \Omega FO(X)\)
 \item \(\plI\win G_1(\Omega_X,\Omega_X)\)
@@ -585,7 +582,7 @@ is not an \(\omega\)-cover, so \(\tau\) is a winning strategy,
 verifying that (a) implies (b).
 
 The equivalence of (b) and (c) is given by Thm2 of
-[Scheepers Comb. of Open Covers III].
+[http://eudml.org/doc/212209].
 
 Let \(\sigma\) be a winning predetermined strategy for \(\plI\)
 in \(G_1(\Omega_x,\Omega_x)\). For \(F\in[X]^{<\omega}\) and
@@ -597,26 +594,93 @@ strategy for \(\plII\) in \(\Omega FO(X)\), verifying that
 (d) implies (a) is trivial, so the proof is complete.
 \end{proof}
 
-\(\Omega R\) is equivalent to all finite powers being \(R\).
+\(\Omega R\) is equivalent to all finite powers being \(R\):
+Thm3 of [http://eudml.org/doc/212209].
 These notions cannot coincide: see Thm9 of 
 [http://dx.doi.org/10.1016/j.topol.2013.07.022] 
 for a consisent example of a \(R\) space whose square
-is not \(R\). Note the distinction here, as \(R^+\) is
+is not \(R\), so therefore not \(\Omega R\). 
+Note the distinction with strategies for the opponent, as \(R^+\) is
 equivalent to \(\Omega R^+\) and \(R^{+mark}\) is
 equivalent to \(\Omega R^{+mark}\).
 
+\begin{corollary}
+The following are equivalent for all \(T_{3.5}\) spaces.
+\begin{enumerate}[a)]
+\item \(X\) is not \(\Omega R\)
+\item \(\plII\win \Omega FO(X)\)
+\item \(\plII\markwin \Omega FO(X)\)
+\item \(\plI\win G_1(\Omega_X,\Omega_X)\)
+\item \(\plI\prewin G_1(\Omega_X,\Omega_X)\)
+\item \(C_p(X)\) is not \(sCFT\), that is, 
+  \(\plI\prewin \schStrongSelGame{\Omega_{C_p(X),\mathbf 0}}{\Omega_{C_p(X),\mathbf 0}}\).
+\item \(C_p(X)\) is not \(sCDFT\), that is,
+  \(\plI\prewin \schStrongSelGame{\mc D_{C_p(X)}}{\Omega_{C_p(X),\mathbf 0}}\).
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+(a)-(e) were just shown.
+The equivalence of (a),(f),(g) was shown by Clontz.
+\end{proof}
+
 \begin{theorem}
-\(\plII\win\gruConGame{X}{x}\) if and only if
-\(\plII\markwin\gruConGame{X}{x}\)
+The following are equivalent for Frechet-Urysohn spaces.
+\begin{enumerate}[a)]
+\item \(\plII\win\gruConGame{X}{x}\)
+\item \(\plII\markwin\gruConGame{X}{x}\)
+\item \(\plI\win\schStrongSelGame{\Omega_{X,x}}{\Omega_{X,x}}\)
+\item \(\plI\prewin\schStrongSelGame{\Omega_{X,x}}{\Omega_{X,x}}\) 
+\end{enumerate}
 \end{theorem}
 \begin{proof}
 If \(\plII\win\gruConGame{X}{x}\), then by
 [https://doi.org/10.1016/0016-660X(78)90032-6]
-there exist sets \(A_n\) for \(n<\omega\) such
-that \(x\in cl(A_n)\), but for all \(x_n\in A_n\),
-\(x_n\not\to x\). So let \(\sigma(U,n)\in A_n\cap U\).
+there exist sets \(A_n\in\Omega_{X,x}\) for \(n<\omega\) such
+that for all \(x_n\in A_n\), \(x_n\not\to x\). 
+So let \(\sigma(U,n)\in A_n\cap U\).
 It follows that \(\sigma\) is a winning Markov strategy
-for \(\plII\).
+for \(\plII\) in \(\gruConGame{X}{x}\), so (a)
+is equivalent to (b).
+
+Furthermore, let \(\tau(n)=A_n\). Since
+\(x_n\not\to x\) implies \(\{x_n:n<\omega\}\not\in\Omega_{X,x}\)
+as \(X\) is F-U, it follows that
+\(\tau\) is a winning predetermined strategy for \(\plI\)
+in \(\schStrongSelGame{\Omega_{X,x}}{\Omega_{X,x}}\).
+Thus (a) implies (d) implies (c).
+
+So finally, let \(\sigma\) be a winning strategy for \(\plI\) in
+\(\schStrongSelGame{\Omega_{X,x}}{\Omega_{X,x}}\). 
+For \(s\concat\<U\>\in {T_{X,x}}^{<\omega}\setminus\{\emptyset\}\),
+let \(\tau(s\concat\<U\>)\in\sigma(\<\tau(s\rest 1),\dots,\tau(s)\>)\cap U\)
+be a strategy for \(\plII\) in \(\gruConGame{X}{x}\).
+If \(f\) attacks \(\tau\), then
+\(\<\tau(f\rest 1),\tau(f\rest 2),\dots\>\) attacks \(\sigma\),
+and therefore \(\{\tau(f\rest n+1):n<\omega\}\not\in\Omega_{X,x}\).
+It follows that \(\tau(f\rest n+1)\not\to x\), so \(\tau\) is a
+winning strategy for \(\plII\), verifying that (c) implies (a).
+\end{proof}
+
+\begin{corollary}
+The following are equivalent for all \(T_{3.5}\) \(\gamma\) spaces.
+\begin{enumerate}[a)]
+\item \(X\) is not \(\Omega R\)
+\item \(\plII\win \Omega FO(X)\)
+\item \(\plII\markwin \Omega FO(X)\)
+\item \(\plI\win G_1(\Omega_X,\Omega_X)\)
+\item \(\plI\prewin G_1(\Omega_X,\Omega_X)\)
+\item \(C_p(X)\) is not \(sCFT\), that is, 
+  \(\plI\prewin \schStrongSelGame{\Omega_{C_p(X),\mathbf 0}}{\Omega_{C_p(X),\mathbf 0}}\).
+\item \(C_p(X)\) is not \(sCDFT\), that is,
+  \(\plI\prewin \schStrongSelGame{\mc D_{C_p(X)}}{\Omega_{C_p(X),\mathbf 0}}\).
+\item \(\plI\win\schStrongSelGame{\Omega_{C_p(X),\mathbf 0}}{\Omega_{C_p(X),\mathbf 0}}\)
+\item \(\plII\win\gruConGame{C_p(X)}{\mathbf 0}\)
+\item \(\plII\markwin\gruConGame{C_p(X)}{\mathbf 0}\)
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+By [https://doi.org/10.1016/0166-8641(82)90065-7],
+\(X\) being \(\gamma\) is equivalent to \(C_p(X)\) being F-U.
 \end{proof}
 
 
