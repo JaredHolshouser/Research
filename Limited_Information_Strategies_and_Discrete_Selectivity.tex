@@ -302,6 +302,7 @@ The following are equivalent for \(T_{3.5}\) spaces \(X\).
 \item \(\plI\win FO(X)\).
 \item \(\plI\win\Omega FO(x)\).
 \item \(\plI\win \gruConGame{C_p(X)}{\mathbf 0}\).
+\item \(\plI\win \gruClusGame{C_p(X)}{\mathbf 0}\).
 \item \(\plI\win CL(C_p(X),\mathbf 0)\).
 \item \(\plI\win CD(C_p(X))\).
 \item \(X\) is \(\Omega R^+\), that is, 
@@ -352,11 +353,13 @@ The following are equivalent for \(T_{3.5}\) spaces \(X\).
   is an \(\omega\)-cover. Therefore \(\tau\) is a winning strategy, 
   verifying \(\plI\win\Omega FO(X)\).
 
-  The equivalence of (b), (e), (f), and (g) are given as 3.8 of [Tkachuk 2017].
+  The equivalence of (b), (e), (g), and (h) are given as 3.8 of [Tkachuk 2017].
 
-  The equivalence of (h), (i), and (j) are due to Clontz.
+  The equivalence of (e) is (f) are given in [https://doi.org/10.1016/0016-660X(76)90024-6].
+  
+  The equivalence of (i), (j), and (k) are due to Clontz's Menger preprint.
 
-  (j) \(\Leftrightarrow\) (f) follows from 3.18a of [Tkachuk 2017].
+  (k) \(\Leftrightarrow\) (g) follows from 3.18a of [Tkachuk 2017].
 \end{proof}
 
 Tkachuk showed the following in [CLOSEDDISCRETESELECTIONS].
@@ -429,6 +432,7 @@ The following are equivalent for \(T_{3.5}\) spaces \(X\).
 \item \(\plI\prewin\Omega FO(x)\).
 \item \(C_p(X)\) is first-countable.
 \item \(\plI\prewin \gruConGame{C_p(X)}{\mathbf 0}\).
+\item \(\plI\prewin \gruClusGame{C_p(X)}{\mathbf 0}\).
 \item \(\plI\prewin CL(C_p(X),\mathbf 0)\).
 \item \(\plI\prewin CD(C_p(X))\).
 \item \(X\) is \(\Omega R^{+mark}\).
@@ -467,7 +471,7 @@ It is well-known and easy to see that (a) is equivalent to (f).
 To see that (f) implies (g), note that we can find a sequence of open sets \(U_n\) so that \(\mathbf 0 \in U_{n+1} \subseteq \overline{U_{n+1}} \subseteq U_n\) for all \(n\).
 I simply plays \(U_n\) are turn \(n\), and whatever \(x_n\) are played by II must converge to \(x\).
 
-Clearly (g) implies (h) which in turn implies (i), which is
+Clearly (g) implies (i) which in turn implies (j), which is
 equivalent to (a) by [CLOSEDDISCRETESELECTIONS] 
 %Let \(\sigma(n)\) be a pre-determined strategy for I for \(CD(C_p(X))\).
 %Towards a contradiction suppose \(X\) is uncountable.
@@ -480,10 +484,14 @@ equivalent to (a) by [CLOSEDDISCRETESELECTIONS]
 %This is a contradiction, so \(X\) must be countable.
 %Thus (a) - (i) are equivalent.
 
-Clontz showed that (j), (k), and (l) are equivalent.
+Clontz showed (g) and (h) are equivalent in his dissertation; it's
+not hard to prove this.
 
-Note that (j) implies (b) implies (a).
-So the last thing we need to show is that (e) implies (j).
+Clontz showed that (k), (l), and (m) are equivalent in his
+Menger/CFT preprint.
+
+Note that (k) implies (b) implies (a).
+So the last thing we need to show is that (e) implies (k).
 Let \(\sigma(n)\) be a pre-determined strategy for I for \(\Omega FO(X)\).
 We define a Markov strategy, \(\tau(\mathcal{U},n)\) for II for \(\Omega R\) as follows.
 At round \(n\) suppose I has played \(\mathcal{U}\).
@@ -624,15 +632,17 @@ The equivalence of (a),(f),(g) was shown by Clontz.
 \end{proof}
 
 \begin{theorem}
-The following are equivalent for Frechet-Urysohn spaces.
+TODO
+The following are equivalent.
 \begin{enumerate}[a)]
-\item \(\plII\win\gruConGame{X}{x}\)
-\item \(\plII\markwin\gruConGame{X}{x}\)
+\item \(\plII\win\gruClusGame{X}{x}\)
+\item \(\plII\markwin\gruClusGame{X}{x}\)
 \item \(\plI\win\schStrongSelGame{\Omega_{X,x}}{\Omega_{X,x}}\)
 \item \(\plI\prewin\schStrongSelGame{\Omega_{X,x}}{\Omega_{X,x}}\) 
 \end{enumerate}
 \end{theorem}
 \begin{proof}
+TODO adapt this for clustering!
 If \(\plII\win\gruConGame{X}{x}\), then by
 [https://doi.org/10.1016/0016-660X(78)90032-6]
 there exist sets \(A_n\in\Omega_{X,x}\) for \(n<\omega\) such
@@ -662,7 +672,7 @@ winning strategy for \(\plII\), verifying that (c) implies (a).
 \end{proof}
 
 \begin{corollary}
-The following are equivalent for all \(T_{3.5}\) \(\gamma\) spaces.
+The following are equivalent for all \(T_{3.5}\) spaces.
 \begin{enumerate}[a)]
 \item \(X\) is not \(\Omega R\)
 \item \(\plII\win \Omega FO(X)\)
@@ -674,14 +684,10 @@ The following are equivalent for all \(T_{3.5}\) \(\gamma\) spaces.
 \item \(C_p(X)\) is not \(sCDFT\), that is,
   \(\plI\prewin \schStrongSelGame{\mc D_{C_p(X)}}{\Omega_{C_p(X),\mathbf 0}}\).
 \item \(\plI\win\schStrongSelGame{\Omega_{C_p(X),\mathbf 0}}{\Omega_{C_p(X),\mathbf 0}}\)
-\item \(\plII\win\gruConGame{C_p(X)}{\mathbf 0}\)
-\item \(\plII\markwin\gruConGame{C_p(X)}{\mathbf 0}\)
+\item \(\plII\win\gruClusGame{C_p(X)}{\mathbf 0}\)
+\item \(\plII\markwin\gruClusGame{C_p(X)}{\mathbf 0}\)
 \end{enumerate}
 \end{corollary}
-\begin{proof}
-By [https://doi.org/10.1016/0166-8641(82)90065-7],
-\(X\) being \(\gamma\) is equivalent to \(C_p(X)\) being F-U.
-\end{proof}
 
 
   \bibliographystyle{plain}
