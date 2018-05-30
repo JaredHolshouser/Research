@@ -632,35 +632,61 @@ The equivalence of (a),(f),(g) was shown by Clontz.
 \end{proof}
 
 \begin{theorem}
+\(\plII\win\gruConGame{X}{x}\) if and only if
+\(\plII\markwin\gruConGame{X}{x}\)
+\end{theorem}
+\begin{proof}
+Essentially Theorem 1 of
+[https://doi.org/10.1016/0016-660X(78)90032-6].
+\end{proof}
+
+We adapt this result to show the equivalence of (a) and (b)
+in the following theorem. First, a lemma.
+
+\begin{lemma}
+If \(\plII\notmarkwin\gruClusGame{X}{x}\),
+then \(X\) is countably tight at \(x\).
+\end{lemma}
+\begin{proof}
+Let \(A\in\Omega_{X,x}\), and assume
+\(\plII\notmarkwin\gruClusGame{X}{x}\).
+Let \(\sigma\) be a Markov strategy
+for \(\plII\) that chooses exclusively from \(A\).
+Since \(\sigma\) is not winning,
+there exist open sets \(U_n\in T_{X,x}\)
+such that \(\{\sigma(\<U_n\>,n):n<\omega\}\in\Omega_{X,x}\).
+This shows that \(X\) is countably tight at \(x\).
+\end{proof}
+
+\begin{theorem}
 TODO
 The following are equivalent.
 \begin{enumerate}[a)]
 \item \(\plII\win\gruClusGame{X}{x}\)
-\item There exist sets \(A_n\in\Omega_{X,x}\) for \(n<\omega\)
-      such that for all \(x_n\in A_n\), \(\{x_n:n<\omega\}\not\in\Omega_{X,x}\).
 \item \(\plII\markwin\gruClusGame{X}{x}\)
 \item \(\plI\win\schStrongSelGame{\Omega_{X,x}}{\Omega_{X,x}}\)
 \item \(\plI\prewin\schStrongSelGame{\Omega_{X,x}}{\Omega_{X,x}}\) 
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-Condition (b) is adapted from Theorem 1 of 
-[https://doi.org/10.1016/0016-660X(78)90032-6] where a
-similar notion was
-used to characterize \(\plII\notwin\gruConGame{X}{x}\).
-Assuming \(\plII\win\gruClusGame{X}{x}\), it's clear that
-for every \(A\in\Omega_{X,x}\),
-\(\{\sigma(s):s\in\{X\}^{<\omega}\}\) is a countable subset of \(A\)
-Suppose (b) did not hold; it follows that for any \(A\in\Omega_{X,x}\),
-there exists a countable \(B\subseteq A\) with \(B\in\Omega_{X,x}\).
-Let \(\sigma\) be a strategy for \(\plII\) in \(\gruClusGame{X}\). 
-It follows that for any \(s\in T{X,x}^{<\omega}\), the set
-\(\{\sigma(s):
 
-there exist sets \(A_n\in\Omega_{X,x}\) for \(n<\omega\) such
+So assume (a). If \(X\) is not countably tight at \(x\),
+then we already have (b) by the lemma. So assume \(X\)
+is countably tight at \(x\).
+
+Let \(\tau\) be a winning strategy for \(\plII\).
+Let \(f(\emptyset)=\emptyset\).
+Suppose \(f(s)\in T_{X,x}^{|s|}\) has been defined
+for \(s\in\omega^{<\omega}\). Then
+the set \(\{\tau(s\concat\<U\>):U\in T_{X,x}\}\in\Omega_{X,x}\),
+so define \(f(s\concat\<n\>)\in T_{X,x}^{|s|+1}\) for \(n<\omega\)
+such that \(\{\tau(f(s\concat\<n\>)):n<\omega\}\in\Omega_{X,x}\).
+
+Let \(b:\omega\to\omega^\omega\), and
+let \(\sigma(U,m)\in\{\tau(f(b(m)\concat\<n\>:n<\omega\}\cap U\).
+Then for any attack \(a\in T_{X,x}^\omega\),
 
 that for all \(x_n\in A_n\), \(\{x_n:n<\omega\}\not\in\Omega_{X,x}\).
-In particular, let \(A_0= 
 So let \(\sigma(U,n)\in A_n\cap U\).
 It follows that \(\sigma\) is a winning Markov strategy
 for \(\plII\) in \(\gruConGame{X}{x}\), so (a)
