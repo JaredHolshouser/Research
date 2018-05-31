@@ -525,11 +525,10 @@ The following are equivalent for all spaces \(X\).
 \item \(\plII\win FO(X)\)
 \item \(\plII\win PO(X)\)
 \item \(\plI\win \rothGame{X}\)
-\item \(\plI\prewin \rothGame{X}\)
+\item \(X\) is not \(R\), that is, \(\plI\prewin \rothGame{X}\)
 \item \(\plII\markwin PO(X)\)
 \item \(\plII\markwin FO(X)\)
 \end{enumerate}
-In particular, these are all equivalent to \(X\) not being \(R\).
 \end{theorem}
 \begin{proof}
 (a) \(\Leftrightarrow\) (b) is 4.4 of [Telgarksy 1975].
@@ -572,10 +571,9 @@ The following are equivalent for all spaces \(X\).
 \begin{enumerate}[a)]
 \item \(\plII\win \Omega FO(X)\)
 \item \(\plI\win G_1(\Omega_X,\Omega_X)\)
-\item \(\plI\prewin G_1(\Omega_X,\Omega_X)\)
+\item \(X\) is not \(\Omega R\), that is, \(\plI\prewin G_1(\Omega_X,\Omega_X)\)
 \item \(\plII\markwin \Omega FO(X)\)
 \end{enumerate}
-In particular, these are all equivalent to \(X\) not being \(\Omega R\).
 \end{theorem}
 \begin{proof}
 Let \(\sigma\) be a winning strategy for \(\plII\) in \(\Omega FO(X)\).
@@ -615,119 +613,164 @@ equivalent to \(\Omega R^{+mark}\).
 \begin{corollary}
 The following are equivalent for all \(T_{3.5}\) spaces.
 \begin{enumerate}[a)]
-\item \(X\) is not \(\Omega R\)
 \item \(\plII\win \Omega FO(X)\)
 \item \(\plII\markwin \Omega FO(X)\)
 \item \(\plI\win G_1(\Omega_X,\Omega_X)\)
-\item \(\plI\prewin G_1(\Omega_X,\Omega_X)\)
+\item \(X\) is not \(\Omega R\), that is, \(\plI\prewin G_1(\Omega_X,\Omega_X)\)
 \item \(C_p(X)\) is not \(sCFT\), that is, 
   \(\plI\prewin \schStrongSelGame{\Omega_{C_p(X),\mathbf 0}}{\Omega_{C_p(X),\mathbf 0}}\).
 \item \(\plI\win \schStrongSelGame{\Omega_{C_p(X),\mathbf 0}}{\Omega_{C_p(X),\mathbf 0}}\).
 \item \(C_p(X)\) is not \(sCDFT\), that is,
   \(\plI\prewin \schStrongSelGame{\mc D_{C_p(X)}}{\Omega_{C_p(X),\mathbf 0}}\).
+\item \(\plI\win \schStrongSelGame{\mc D_{C_p(X)}}{\Omega_{C_p(X),\mathbf 0}}\).
 \end{enumerate}
 \end{corollary}
 \begin{proof}
-(a)-(e) were just shown.
-The equivalence of (a),(f),(h) was shown by Sakai.
-The equivalence of (f) and (g) is given in 4.37 of [Comb. of Open Covers in Gen Prog Top III].
+(a)-(d) were just shown.
+The equivalence of (d),(e),(g) was shown by Sakai.
+The equivalence of (e) and (f) is given in 4.37 of [Comb. of Open Covers in Gen Prog Top III].
+
+Of course (g) implies (h). And since \(\mc D_{C_p(X)}\subseteq\Omega_{C_p(X),\mathbf 0}\),
+any winning strategy for \(\plI\) in \(\schStrongSelGame{\mc D_{C_p(X)}}{\Omega_{C_p(X),\mathbf 0}}\)
+is a winning strategy for \(\plI\) in 
+\(\schStrongSelGame{\Omega_{C_p(X),\mathbf 0}}{\Omega_{C_p(X),\mathbf 0}}\),
+so (h) implies (f).
 \end{proof}
 
-%\begin{theorem}
-%\(\plII\win\gruConGame{X}{x}\) if and only if
-%\(\plII\markwin\gruConGame{X}{x}\)
-%\end{theorem}
-%\begin{proof}
-%Essentially Theorem 1 of
-%[https://doi.org/10.1016/0016-660X(78)90032-6].
-%\end{proof}
-%
-%\begin{lemma}
-%If \(\plII\notmarkwin\gruClusGame{X}{x}\),
-%then \(X\) is countably tight at \(x\).
-%\end{lemma}
-%\begin{proof}
-%Let \(A\in\Omega_{X,x}\), and assume
-%\(\plII\notmarkwin\gruClusGame{X}{x}\).
-%Let \(\sigma\) be a Markov strategy
-%for \(\plII\) that chooses exclusively from \(A\).
-%Since \(\sigma\) is not winning,
-%there exist open sets \(U_n\in T_{X,x}\)
-%such that \(\{\sigma(\<U_n\>,n):n<\omega\}\in\Omega_{X,x}\).
-%This shows that \(X\) is countably tight at \(x\).
-%\end{proof}
-%
-%\begin{theorem}
-%TODO
-%The following are equivalent.
-%\begin{enumerate}[a)]
-%\item \(\plII\win\gruClusGame{X}{x}\)
-%\item \(\plII\markwin\gruClusGame{X}{x}\)
-%\item \(\plI\win\schStrongSelGame{\Omega_{X,x}}{\Omega_{X,x}}\)
-%\item \(\plI\prewin\schStrongSelGame{\Omega_{X,x}}{\Omega_{X,x}}\) 
-%\end{enumerate}
-%\end{theorem}
-%\begin{proof}
-%
-%So assume (a). If \(X\) is not countably tight at \(x\),
-%then we already have (b) by the lemma. So assume \(X\)
-%is countably tight at \(x\).
-%
-%Let \(\tau\) be a winning strategy for \(\plII\).
-%Let \(f(\emptyset)=\emptyset\).
-%Suppose \(f(s)\in T_{X,x}^{|s|}\) has been defined
-%for \(s\in\omega^{<\omega}\). Then
-%the set \(\{\tau(s\concat\<U\>):U\in T_{X,x}\}\in\Omega_{X,x}\),
-%so define \(f(s\concat\<n\>)\in T_{X,x}^{|s|+1}\) for \(n<\omega\)
-%such that \(\{\tau(f(s\concat\<n\>)):n<\omega\}\in\Omega_{X,x}\).
-%
-%Let \(b:\omega\to\omega^\omega\), and
-%let \(\sigma(U,m)\in\{\tau(f(b(m)\concat\<n\>:n<\omega\}\cap U\).
-%Then for any attack \(a\in T_{X,x}^\omega\),
-%
-%that for all \(x_n\in A_n\), \(\{x_n:n<\omega\}\not\in\Omega_{X,x}\).
-%So let \(\sigma(U,n)\in A_n\cap U\).
-%It follows that \(\sigma\) is a winning Markov strategy
-%for \(\plII\) in \(\gruConGame{X}{x}\), so (a)
-%is equivalent to (b).
-%
-%Furthermore, let \(\tau(n)=A_n\). Since
-%\(x_n\not\to x\) implies \(\{x_n:n<\omega\}\not\in\Omega_{X,x}\)
-%as \(X\) is F-U, it follows that
-%\(\tau\) is a winning predetermined strategy for \(\plI\)
-%in \(\schStrongSelGame{\Omega_{X,x}}{\Omega_{X,x}}\).
-%Thus (a) implies (d) implies (c).
-%
-%So finally, let \(\sigma\) be a winning strategy for \(\plI\) in
-%\(\schStrongSelGame{\Omega_{X,x}}{\Omega_{X,x}}\). 
-%For \(s\concat\<U\>\in {T_{X,x}}^{<\omega}\setminus\{\emptyset\}\),
-%let \(\tau(s\concat\<U\>)\in\sigma(\<\tau(s\rest 1),\dots,\tau(s)\>)\cap U\)
-%be a strategy for \(\plII\) in \(\gruConGame{X}{x}\).
-%If \(f\) attacks \(\tau\), then
-%\(\<\tau(f\rest 1),\tau(f\rest 2),\dots\>\) attacks \(\sigma\),
-%and therefore \(\{\tau(f\rest n+1):n<\omega\}\not\in\Omega_{X,x}\).
-%It follows that \(\tau(f\rest n+1)\not\to x\), so \(\tau\) is a
-%winning strategy for \(\plII\), verifying that (c) implies (a).
-%\end{proof}
-%
-%\begin{corollary}
-%The following are equivalent for all \(T_{3.5}\) spaces.
-%\begin{enumerate}[a)]
-%\item \(X\) is not \(\Omega R\)
-%\item \(\plII\win \Omega FO(X)\)
-%\item \(\plII\markwin \Omega FO(X)\)
-%\item \(\plI\win G_1(\Omega_X,\Omega_X)\)
-%\item \(\plI\prewin G_1(\Omega_X,\Omega_X)\)
-%\item \(C_p(X)\) is not \(sCFT\), that is, 
-%  \(\plI\prewin \schStrongSelGame{\Omega_{C_p(X),\mathbf 0}}{\Omega_{C_p(X),\mathbf 0}}\).
-%\item \(C_p(X)\) is not \(sCDFT\), that is,
-%  \(\plI\prewin \schStrongSelGame{\mc D_{C_p(X)}}{\Omega_{C_p(X),\mathbf 0}}\).
-%\item \(\plI\win\schStrongSelGame{\Omega_{C_p(X),\mathbf 0}}{\Omega_{C_p(X),\mathbf 0}}\)
-%\item \(\plII\win\gruClusGame{C_p(X)}{\mathbf 0}\)
-%\item \(\plII\markwin\gruClusGame{C_p(X)}{\mathbf 0}\)
-%\end{enumerate}
-%\end{corollary}
+\begin{theorem}
+The following properties imply lower properites for all spaces \(X\).
+\begin{enumerate}[a)]
+\item \(\plI\win\schStrongSelGame{\mc D_X}{\Omega_{X,x}}\)
+\item \(\plII\win CL(X,x)\)
+\item \(\plII\win\gruClusGame{X}{x}\)
+\item \(\plI\win\schStrongSelGame{\Omega_{X,x}}{\Omega_{X,x}}\)
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Begin by letting \(\sigma\) be a winning strategy for
+\(\plI\) in \(\schStrongSelGame{\mc D_X}{\Omega_{X,x}}\).
+For \(s\in T_{X}^{<\omega}\), assume \(\tau(s\rest i+1)\) 
+is defined for \(i<|s|\), defining \(s'\in X^{|s|}\)
+by \(s'(i)=\tau(s\rest i+1)\), and let
+\(\tau(s\concat\<U\>)\in\sigma(s')\cap U\).
+So \(\tau\) is a strategy for \(\plII\) in \(CL(X,x)\).
+Then for any attack \(f\) against \(\tau\),
+an attack \(f'\) against \(\sigma\) is defined by
+\(f'(i)=\tau(f\rest i+1)\). It follows that
+\(\{f'(i):i<\omega\}=\{\tau(f\rest i+1):i<\omega\}\not\in\Omega_{X,x}\),
+so \(\tau\) is a winning strategy, witnessing (a) implies (b).
 
+Let \(\sigma\) be a winning strategy for \(\plII\) in
+\(CL(X,x)\). Then \(\sigma\) is also a winning strategy
+for \(\plII\) in \(\gruClusGame{X}{x}\), so (b) implies (c).
+
+Given a winning strategy \(\sigma\) for \(\plII\) in
+\(\gruClusGame{X}{x}\), let \(s\in {T_{X,x}}^{<\omega}\) and suppose
+and \(B_t\in\Omega_{X,x}\) is defined for all \(t<s\).
+Then let \(B_s=\{\sigma(s\concat\<U\>):U\in T_{X,x}\}\);
+it's clear that \(B_s\in\Omega_{X,x}\).
+Define \(\tau\) for \(\plI\) in \(\schStrongSelGame{\Omega_{X,x}}{\Omega_{X,x}}\)
+by \(\tau(r)=B_{r'}\) where \(r'\in {T_{X,x}}^{|r|}\) satisfies
+\(r(i)=\sigma(r'\rest i+1)\) for all \(i<|r|\). Then an attack \(f\)
+against \(\tau\) yields an attack \(f'\) against \(\sigma\)
+such that \(f(i)=\sigma(f'\rest i+1)\) for all \(i<\omega\).
+Since \(\sigma\) is a winning strategy, it follows that
+\(\{f(i):i<\omega\}=\{\sigma(f'\rest i+1):i<\omega\}\not\in\Omega_{X,x}\).
+This verifies (c) implies (d).
+\end{proof}
+
+\begin{theorem}
+The following properties imply lower properites for all spaces \(X\).
+\begin{enumerate}[a)]
+\item \(\plI\prewin\schStrongSelGame{\mc D_X}{\Omega_{X,x}}\)
+\item \(\plII\markwin CL(X,x)\)
+\item \(\plII\markwin\gruClusGame{X}{x}\)
+\item \(\plI\prewin\schStrongSelGame{\Omega_{X,x}}{\Omega_{X,x}}\)
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Begin by letting \(\sigma\) be a winning predetermined strategy for
+\(\plI\) in \(\schStrongSelGame{\mc D_X}{\Omega_{X,x}}\).
+Define the Markov strategy \(\tau\) for \(\plII\) in \(CL(X,x)\)
+by \(\tau(U,n)\in\sigma(n)\cap U\).
+Since \(\tau(U,n)\in\sigma(n)\) for all \(n<\omega\),
+it's clear that \(\{\tau(U,n):n<\omega\}\not\in\Omega_{X,x}\),
+making \(\tau\) a winning strategy, witnessing (a) implies (b).
+
+Let \(\sigma\) be a winning Markov strategy for \(\plII\) in
+\(CL(X,x)\). Then \(\sigma\) is also a winning Markov strategy
+for \(\plII\) in \(\gruClusGame{X}{x}\), so (b) implies (c).
+
+Given a winning Markov strategy \(\sigma\) for \(\plII\) in
+\(\gruClusGame{X}{x}\), let 
+\(\tau(n)=\{\sigma(U,n):U\in T_{X,x}\).
+Then \(\tau\) is a predetermined strategy for \(\plI\) in
+\(\schStrongSelGame{\Omega_{X,x}}{\Omega_{X,x}}\).
+For any attack \(f\) against \(\tau\),
+\(f(n)=\sigma(g(n),n)\) for some \(g(n)\in T_{X,x}\).
+But then \(g\) is an attack against \(\sigma\), and
+thus \(\{f(n):n<\omega\}=\{\sigma(g(n),n):n<\omega\}\not\in\Omega_{X,x}\),
+so we have (c) implies (d).
+\end{proof}
+
+Note that for \(C_p(X)\), (a)-(d) in both of the above theorems
+are actually equivalent.
+
+\begin{corollary}
+The following are equivalent for all \(T_{3.5}\) spaces.
+\begin{enumerate}[a)]
+\item \(\plII\win \Omega FO(X)\)
+\item \(\plII\markwin \Omega FO(X)\)
+\item \(\plI\win G_1(\Omega_X,\Omega_X)\)
+\item \(X\) is not \(\Omega R\), that is, \(\plI\prewin G_1(\Omega_X,\Omega_X)\)
+\item \(C_p(X)\) is not \(sCFT\), that is, 
+  \(\plI\prewin \schStrongSelGame{\Omega_{C_p(X),\mathbf 0}}{\Omega_{C_p(X),\mathbf 0}}\).
+\item \(\plI\win\schStrongSelGame{\Omega_{C_p(X),\mathbf 0}}{\Omega_{C_p(X),\mathbf 0}}\)
+\item \(C_p(X)\) is not \(sCDFT\), that is,
+  \(\plI\prewin \schStrongSelGame{\mc D_{C_p(X)}}{\Omega_{C_p(X),\mathbf 0}}\).
+\item \(\plI\win\schStrongSelGame{\mc D_{C_p(X)}}{\Omega_{C_p(X),\mathbf 0}}\)
+\item \(\plII\markwin\gruClusGame{C_p(X)}{\mathbf 0}\)
+\item \(\plII\win\gruClusGame{C_p(X)}{\mathbf 0}\)
+\item \(\plII\markwin CL(C_p(X),\mathbf 0)\)
+\item \(\plII\win CL(C_p(X),\mathbf 0)\)
+\item \(\plII\markwin CD(C_p(X))\)
+\item \(\plII\win CD(C_p(X))\)
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+We've established (a)-(l) are equivalent.
+Assuming (b), we adapt Proposition 3.9 of
+[Tkachuk Two Point-Picking Games] as follows.
+Let \(\sigma\) be a winning Markov strategy for
+\(\plII\) in \(\Omega FO(X)\). Then for 
+\(U=[\mathbf x(U),supp(U),\epsilon(U)]\in T_{C_p(X)}\),
+let \(\tau(U,n)\in C_p(X)\) satisfy \(\tau(U,n)(x)=\mathbf x(U)(x)\)
+for \(x\in F\) and \(\tau(U,n)(x)=n\) for 
+\(x\in X\setminus\sigma(U,n)\). Then \(\tau\) is a Markov
+strategy for \(\plII\), and when it is attacked by 
+\(f\), we note that \(\{\sigma(supp(f(n)),n):n<\omega\}\)
+is not an \(\omega\)-cover. So choose \(G\in[X]^{<\omega}\)
+such that \(G\not\subseteq\sigma(supp(f(n)),n)\) for all \(n<\omega\).
+Then for \(\mathbf y\in C_p(X)\), choose \(m\) such that
+\(\mathbf y(x)<m\) for all \(x\in G\). Note then that 
+for \(n\geq m\), there
+exists \(x\in G\setminus\sigma(f(n),n)\) such that 
+\(\tau(f(n),n)(x)=n\geq m\). Then
+\(\{\mathbf z\in C_p(X):\mathbf z(x)<m\text{ for all }x\in G\}\)
+is an open neighborhood of \(\mathbf y\) that misses
+\(\tau(f(n),n)\) for all \(n\geq m\), so
+it follows that \(\{\tau(f(n),n):n<\omega\}\) is closed and
+discrete in \(C_p(X)\). Therefore \(\tau\) is a winning Markov
+strategy, verifying (b) implies (m).
+
+It's clear that (m) implies (n), so finally note that
+a winning strategy for \(\plII\) in \(CD(C_p(X))\) is also
+a winning strategy for \(\plII\) in \(CL(C_p(X),\mathbf 0)\),
+so (n) implies (l).
+\end{proof}
+
+The equivalence of (a) and (n) 
+answers Quesiton 4.6 of Tkachuk in [Two Point-picking games].
 
   \bibliographystyle{plain}
   \bibliography{../bibliography}
