@@ -6,6 +6,8 @@
 \usepackage{mathtools}
 \usepackage{amsthm}
 
+\parskip=0.5em
+
 \usepackage[letterpaper,margin=1in]{geometry}
 
 \usepackage{enumerate}
@@ -83,10 +85,11 @@ In subsequent work, Tkachuk showed that for \(T_{3.5}\)-spaces, \(C_p(X)\) is di
 Discrete selectivity naturally generates a game, in which player I plays open sets, player II responds with points from those open sets, and player II wins if the points form a closed discrete set.
 Tkachuk explored what happens when player I has a winning strategy for this game, showing that the existence of a winning strategy for player I in this game on \(C_p(X)\) is equivalent to player I having a winning strategy for Gruenhage's \(W\)-game on \(C_p(X,\mathbf 0)\) and is also equivalent to player I having a winning strategy for the point-open game on \(X\)\cite{Tkachuk3}.
 Tkachuk also showed that if player II has a winning strategy in the point-open game on \(X\), then player II has a winning strategy in the discrete selection game on \(C_p(X)\).
-Tkachuk hypothesized that the implication reverses for player II, and posed this problem as an open question.
+Tkachuk hypothesized that the implication partially reverses for player II
+(considering \(\omega\)-covers), and posed this problem as an open question.
 All of the strategies Tkachuk worked with were perfect information strategies.
 
-By considering lower information strategies and other topological games, we were able to answer Tkachuk's question and uncover a number of interesting connections between the discrete selection game and other topological properties.
+By considering limited information strategies and other topological games, we were able to answer Tkachuk's question and uncover a number of interesting connections between the discrete selection game and other topological properties.
 Classic works by Telgarksy and Galvin show that the point open game is dual to the Rothberger game\cite{Galvin}.
 Clontz, in work prior to this, established the equivalence of the existence of winning strategies for the Rothberger game and variants of the Rothberger game on \(X\) to the existence of winning strategies in games related to countable fan tightness for \(C_p(X)\)\cite{Clontz1}.
 Clontz did this both for strategies of perfect information and for limited information strategies.
@@ -97,13 +100,15 @@ Tkachuk referred to a strategy for this variant for player II as an almost winni
 So in Tkachuk's terminology, player II has a winning strategy for the discrete selection game on \(C_p(X)\) if and only if player II has an almost winning strategy for the point-open game on \(X\).
 Moreover, we answered the implied question ``what topological property does a winning strategy for player II for the discrete selection game on \(C_p(X)\) correspond to?''
 We show that player II has a winning strategy for the discrete selection game on \(C_p(X)\) if and only if \(X\) is not Rothberger with respect to \(\omega\)-covers.
-This in turn is true if and only if some finite power of \(X\) is not Lindel\"{o}f.
+This in turn is true if and only if some finite power of \(X\) is not Rothberger.
 
 \section{Definitions}
 
 We will be using a number of definitions.
 These are broken up into three main categories: labeling schema, topological notions, and games.
-\(\omega\) refers to the natural numbers, including \(0\), and \([A]^{<\omega}\) is all the finite tuples with entries from \(A\).
+\(\omega=\{0,1,2,\dots\}\) refers to the natural numbers, 
+\(A^{<\omega}\) collects all the finite tuples with entries from \(A\),
+and \([A]^{<\omega}\) collects all the finite subests of \(A\).
 
 \subsection{Labeling Schema}
 
@@ -112,28 +117,38 @@ These are broken up into three main categories: labeling schema, topological not
 \end{definition}
 
 \begin{definition}
- The \term{selection game} \(\schSelGame{\mc A}{\mc B}\) is the analogous game to \(\schSelProp{\mc A}{\mc B}\), where during each round \(n<\omega\), Player \(\plI\) first chooses \(A_n\in\mc A\), and then Player \(\plII\) chooses \(B_n\in[A_n]^{<\omega}\).
- Player \(\plII\) wins in the case that \(\bigcup_{n<\omega}B_n\in\mc B\), and Player \(\plI\) wins otherwise.
+ An \term{\(\omega\)-length game} \(G=\<M,W\>\) is played by two players \(\plI\) and \(\plII\).
+ Each round, the players alternate choosing moves \(a_n\) and \(b_n\) from the moveset \(M\).
+ If the seqeunce \(\<a_0,b_0,a_1,b_1,\dots\>\) belongs to the payoff set \(W\), then \(\plI\)
+ is the winner; otherwise \(\plII\) is the winner.
+ 
+ A \term{strategy} is a function \(\sigma:M^{<\omega}\to M\) which is used to decide the
+ move for a particular player. For \(\plI\), \(\sigma(\emptyset)\) is the first move,
+ and if \(\plII\) responds with \(b_0\), then \(\sigma(\<b_0\>)\) yields \(\plI\)'s next move,
+ and so on. Likewise, the first two moves for \(\plII\) using a strategy \(\sigma\)
+ would be \(\sigma(\<a_0\>)\) and \(\sigma(\<a_0,a_1\>\) in response to \(\plI\)'s moves
+ \(a_0\) and \(a_1\).
+ 
+ A strategy is said to be a \term{winning strategy} for a player if it always 
+ guarantees a victory for that player, regardless of the moves chosen by the opponent in response.
+ If \(\plI\) has a winning strategy for \(G\), we write \(\plI\win G\); likewise we write
+ \(\plII\win G\) if \(\plII\) has a winning strategy for \(G\).
+ Of course, both players cannot have winning strategies for the same game (although there
+ do exist \term{indetermined} games for which \(\plI\notwin G\) and \(\plII\notwin G\)).
 \end{definition}
 
 \begin{definition}
- Two player games can be played more generally.
- At round \(n\), player \(\plI\) first chooses some object \(X_n\) and then \(\plII\) chooses an object \(Y_n\) in reply.
- Conditions on the sequence of play \(X_0,Y_0,X_1,Y_1,\cdots\) determine who the winner of a play of the game is.
- Abstract games will generally be labeled \(G\).
- 
- A \term{strategy for \(\plI\)} is a function \(\sigma\) which determines the opening move of \(\plI\) and at round \(n+1\) tells \(\plI\) what to play, given that \(X_0,Y_0,\cdots,X_n,Y_n\) has been played so far.
- This strategy is \term{winning for \(\plI\)} if whenever \(\plI\) plays the game according to \(\sigma\), \(\plI\) wins the game.
- If \(\plI\) has a winning strategy for \(G\), we write \(\plI\win G\).
- 
- Likewise a \term{strategy for \(\plII\)} is a function \(\tau\) which at round \(n\) tells \(\plII\) what to play, given that \(X_0,Y_0,\cdots,X_n\) have been played so far.
- This strategy is \term{winning for \(\plII\)} if whenever \(\plII\) plays the game according to \(\tau\), \(\plII\) wins the game.
- If \(\plII\) has a winning strategy for \(G\), we write \(\plII\win G\).
- An elementary fact of games is that it is not possible for both \(\plI\) and \(\plII\) to have winning strategies in the same game.
+ The \term{selection game} \(\schSelGame{\mc A}{\mc B}\) is the analogous game to 
+ \(\schSelProp{\mc A}{\mc B}\), where during each round \(n<\omega\), Player \(\plI\) 
+ first chooses \(A_n\in\mc A\), and then Player \(\plII\) chooses \(B_n\in[A_n]^{<\omega}\).
+ Player \(\plII\) wins in the case that \(\bigcup_{n<\omega}B_n\in\mc B\), 
+ and Player \(\plI\) wins otherwise.
 
- For selection games we can talk more specifically about strategies.
-  A \term{strategy} for \(\plII\) in the game \(\schSelGame{\mc A}{\mc B}\) is a function \(\sigma\) satisfying \(\sigma(\<A_0,\dots,A_n\>)\in[A_n]^{<\omega}\) for \(\<A_0\,\dots,A_n\>\in\mc A^{n+1}\).
-  We say this strategy is \term{winning} if whenever \(\plI\) plays \(A_n\in\mc A\) during each round \(n<\omega\), \(\plII\) wins the game by playing \(\sigma(\<A_0,\dots,A_n\>)\) during each round \(n<\omega\).
+ A strategy for \(\plII\) in the game \(\schSelGame{\mc A}{\mc B}\) is then a function 
+ \(\sigma\) satisfying \(\sigma(\<A_0,\dots,A_n\>)\in[A_n]^{<\omega}\) for 
+ \(\<A_0\,\dots,A_n\>\in\mc A^{n+1}\), and is winning if whenever \(\plI\) plays 
+ \(A_n\in\mc A\) during each round \(n<\omega\), \(\plII\) wins the game by 
+ playing \(\sigma(\<A_0,\dots,A_n\>)\) during each round \(n<\omega\).
 \end{definition}
 
 \begin{definition}
@@ -151,7 +166,7 @@ These are broken up into three main categories: labeling schema, topological not
  If \(\plI\) has a winning tactic, we write \(\plI\tactwin G\) and if \(\plII\) has a winning tactic, we write \(\plII\tactwin G\).
  In some instances, player I will be able to win a game regardless of what II is playing.
  In this case, it is possible to have a strategy for I which depends only on the round of the game.
- We say I has a \term{pre-determined strategy} and write \(\plI\prewin G\). 
+ We say I has a \term{predetermined strategy} and write \(\plI\prewin G\). 
 \end{definition}
 
 \begin{notation}
@@ -171,26 +186,35 @@ These are broken up into three main categories: labeling schema, topological not
    \item An \term{\(\omega\)-cover} \(\mc U\)   for a topological space \(X\) is an open cover   such that for every \(F\in[X]^{<\omega}\), there exists some \(U\in\mc U\)   such that \(F\subseteq U\). Let \(\Omega_X\) be the collection of \(\omega\)-covers for a topological   space \(X\).
    \item Let \(\Omega_{X,x}\) be the collection of subsets \(A\subset X\) where   \(x\in \overline{A}\). (Call \(A\) a \term{blade} of \(x\).)
    \item Let \(\mc D_{X}\) be the collection of dense subsets of a topological   space \(X\).
-   \item Set \(T_X\) to be the non-empty open subsets of \(X\) and \(T_{X,x} = \{U \in T_X : x \in U\}\).
+   \item Let \(T_X\) to be the non-empty open subsets of \(X\).
+   \item Let \(T_{X,x} = \{U \in T_X : x \in U\}\).
   \end{itemize}
 \end{definition}
 
 \subsection{Topological Notions}
 
-\begin{definition}
+\begin{definition}\label{SelectionPrinciples}
  Using the notation just established, we can record a number of topological properties.
   \begin{itemize}
    \item \(\schSelProp{\mc O_X}{\mc O_X}\) is the well-known \term{Menger property} for \(X\) (\(M\) for short).
-   \item \(\schStrongSelProp{\mc O_x}{\mc O_X}\) is then just the \term{Rothberger property} for \(X\) (\(R\) for short). We say this instead of \(sM\).
+     \begin{itemize}
+       \item \(\schStrongSelProp{\mc O_x}{\mc O_X}\) is the well-known \term{Rothberger property}
+       (\(R\) for short), so we say this instead of strong Menger or \(sM\).
+     \end{itemize}
    \item \(\schSelProp{\Omega_X}{\Omega_X}\) is the \term{\(\Omega\)-Menger property} for \(X\) (\(\Omega M\) for short).
-   \item \(\schStrongSelProp{\Omega_X}{\Omega_X}\) is the \term{\(\Omega\)-Rothberger property} for \(X\) (\(\Omega R\) for short). We say this instead of \(s\Omega M\).
+     \begin{itemize}
+       \item Likewise we call \(\schStrongSelProp{\Omega_X}{\Omega_X}\) the 
+       \term{\(\Omega\)-Rothberger property} for \(X\) (\(\Omega R\) for short). 
+     \end{itemize}
    \item \(\schSelProp{\Omega_{X,x}}{\Omega_{X,x}}\) is the \term{countable fan tightness property} for \(X\) at \(x\) (\(CFT_x\) for short). A space \(X\) has \term{countable fan tightness} (\(CFT\) for short)
     if it has countable fan tightness at each point \(x\in X\).
    \item \(\schSelProp{\mc D_X}{\Omega_{X,x}}\) is the \term{countable dense fan tightness property} for \(X\) at \(x\) (\(CDFT_x\) for short). A space \(X\) has \term{countable dense fan tightness} (\(CDFT\) for short) if it has countable dense fan tightness at each point \(x\in X\).
   \end{itemize}
 \end{definition}
 
-Tkachuk isolated the following notion\cite{Tkachuk2}.
+Note that for homogeneous spaces such as \(C_p(X)\), \(C(D)FT_x\) is equivalent to \(C(D)FT\).
+
+Tkachuk isolated the following notion in \cite{Tkachuk2}.
 
 \begin{definition}
  A space \(X\) is \term{discretely selective} if whenever \(\{U_n : n \in \omega\}\) is a sequence of open subsets of \(X\), there are points \(x_n \in U_n\) so that \(\{x_n : n \in \omega\}\) is closed discrete.
@@ -206,35 +230,64 @@ We will use the following notation when working with \(C_p(X)\).
  \]
  where \(f \in C_p(X)\), \(F\) is a finite subset of \(X\), and \(\epsilon > 0\) is a real number.
  \(F\) is called the \term{support} of \([f,F,\epsilon]\).
- We can extend the notion of support to all open \(U \subseteq C_p(X)\), label it \(\supp(U)\).
+ It follows that all open \(U \subseteq C_p(X)\) restrict only finitely many
+ coordinates, which we label \(\supp(U)\).
 \end{definition}
 
 \subsection{Topological Games}
 
 \begin{definition}
- The following selection games will be played in this paper.
- \begin{itemize}
-   \item \(\schSelGame{\mc O_X}{\mc O_X}\) is the well-known \term{Menger game}.
-   \item \(\schStrongSelGame{\mc O_X}{\mc O_X}\) is the \term{Rothberger game}.
-   \item \(\schSelGame{\Omega_X}{\Omega_X}\) is the \term{\(\Omega\)-Menger game}.
-   \item \(\schStrongSelGame{\Omega_X}{\Omega_X}\) is the \term{\(\Omega\)-Rothberger game}.
-   \item \(\schSelGame{\Omega_{X,x}}{\Omega_{X,x}}\) is the \term{countable fan tightness game} for \(X\) at \(x\).
-   \item \(\schSelGame{\mc D_X}{\Omega_{X,x}}\) is the \term{countable dense fan tightness game} for \(X\) at \(x\).
- \end{itemize}
+ Selection games associated with the principles listed in Definition \ref{SelectionPrinciples} 
+ will be investigated in this paper; for example, \(\schStrongSelGame{\mc O_X}{\mc O_X}\) is the well-known 
+ \term{Rothberger game}.
 \end{definition}
   
 \begin{definition}
  The following point-picking games will also be played in this paper.
   \begin{itemize}
    \item The \term{point-open game} for \(X\), denoted \(PO(X)\), is played as follows. Each round, player I plays a point \(x_n \in X\) and player II plays an open sets \(U_n\) with the property that \(x_n \in U_n\). I wins the play of the game if \(X = \bigcup_n U_n\).
+\begin{itemize}
    \item The \term{finite-open game} for \(X\), denoted \(FO(x)\), is played similarly, except that I now plays finite subsets of \(X\), and II's open sets must cover I's corresponding finite sets.
-   \item \(\Omega FO(X)\) and \(\Omega PO(X)\) are defined according to convention: I now wins if \(\{U_n : n \in \omega\}\) forms an \(\omega\)-cover of \(X\).
+   \item \(\Omega FO(X)\) and \(\Omega PO(X)\) are defined similarly, but \(\plI\) now wins if \(\{U_n : n \in \omega\}\) forms an \(\omega\)-cover of \(X\).
+\end{itemize}
    \item Fix \(x \in X\). \term{Gruenhage's \(W\)-game} for \(x\), denoted \(\gruConGame{X}{x}\), is played as follows. Each round, player I plays an open set \(U_n\) with the property that \(x \in U_n\) and player II plays a point \(x_n \in U_n\). I wins if \(x_n \to x\).
-   \item Fix \(x \in X\). \term{Gruenhage's clustering-game} for \(x\), denoted \(\gruClusGame{X}{x}\), is played the same as \(\gruConGame{X}{x}\), except that I wins if \(x\) is a cluster point of \(\{x_n : n \in \omega\}\).
+\begin{itemize}
+   \item \term{Gruenhage's clustering-game} for \(x\), denoted \(\gruClusGame{X}{x}\), is played the same as \(\gruConGame{X}{x}\), except that I wins if \(x\) is a cluster point of \(\{x_n : n \in \omega\}\).
+\end{itemize}
    \item Fix \(x \in X\). The \term{closure game} for \(x\), denoted \(CL(X,x)\), is played as follows. Each round, player I plays an open set \(U_n\) and II plays a point \(x_n \in U_n\). I wins if \(x \in \overline{\{x_n : n \in \omega\}}\).
+\begin{itemize}
    \item The \term{discrete selectivity game}, denoted \(CD(X)\), is played the same as \(CL(X,x)\), but now II wins if \(\{x_n : n \in \omega\}\) is closed and discrete.
  \end{itemize}
+\end{itemize}
 \end{definition}
+
+It's worth noting that selection principles may be characterized
+using limited information strategies for seleciton games.
+
+\begin{proposition}
+  \(\schStrongSelProp{\mathcal{A}}{\mathcal{B}}\) if and only if 
+  \(\plI \notprewin\schStrongSelGame{\mathcal{A}}{\mathcal{B}}\).
+\end{proposition}
+\begin{proof}
+ First suppose that \(\schStrongSelProp{\mathcal{A}}{\mathcal{B}}\) holds.
+ Let \(\sigma\) be a tentative predetermined strategy for \(\plI\) for \(\schStrongSelGame{\mathcal{A}}{\mathcal{B}}\).
+ Then \(\{\sigma(n) : n \in \omega\} \subseteq \mathcal{A}\), and therefore there are \(B_n \in \sigma(n)\) for all \(n\) so that \(\bigcup_n B_n \in \mathcal{B}\).
+ Thus \(\sigma\) is not a winning strategy for \(\plI\).
+ So \(\plI \notprewin\schStrongSelGame{\mathcal{A}}{\mathcal{B}}\).
+ 
+ Now suppose that \(\schStrongSelProp{\mathcal{A}}{\mathcal{B}}\) is false.
+ Then there is some sequence \(\{A_n : n \in \omega\} \subseteq \mathcal{A}\) with the property that whenever \(B_n \in A_n\) for all \(n\), \(\bigcup_n B_n \notin \mathcal{B}\).
+ Then the predetermined strategy \(\sigma(n) = A_n\) is winning for \(\plI\) for \(\schStrongSelGame{\mathcal{A}}{\mathcal{B}}\).
+ Thus \(\plI \prewin\schStrongSelGame{\mathcal{A}}{\mathcal{B}}\).
+\end{proof}
+
+The proof of the following is similar.
+
+\begin{proposition}
+  \(\schSelProp{\mathcal{A}}{\mathcal{B}}\) if and only if 
+  \(\plI \notprewin\schSelGame{\mathcal{A}}{\mathcal{B}}\).
+\end{proposition}
+
 
 \section{Strategies for Player I for the Discrete Selection Game on \(C_p(X)\)}
 
@@ -243,8 +296,8 @@ We begin by extending theorem 3.8 of Tkachuk\cite{Tkachuk3} to equate the existe
 \begin{theorem}
  The following are equivalent for \(T_{3.5}\) spaces \(X\).
  \begin{enumerate}[a)]
-  \item \(X\) is \(R^+\) (see notation 5 under definitions).
-  \item \(X\) is \(\Omega R^+\).
+  \item \(\plII\win \schStrongSelGame{\mc O_X}{\mc O_X}\), that is, \(X\) is \(R^+\).
+  \item \(\plII\win \schStrongSelGame{\Omega_X}{\Omega_X}\), that is, \(X\) is \(\Omega R^+\).
   \item \(\plI\win PO(X)\). 
   \item \(\plI\win FO(X)\).
   \item \(\plI\win\Omega FO(x)\).
@@ -252,8 +305,10 @@ We begin by extending theorem 3.8 of Tkachuk\cite{Tkachuk3} to equate the existe
   \item \(\plI\win \gruClusGame{C_p(X)}{\mathbf 0}\).
   \item \(\plI\win CL(C_p(X),\mathbf 0)\).
   \item \(\plI\win CD(C_p(X))\).
-  \item \(C_p(X)\) is \(sCFT^+\).
-  \item \(C_p(X)\) is \(sCDFT^+\).
+  \item \(\plII\win \schStrongSelGame{\Omega_{C_p(X),\mathbf 0}}{\Omega_{C_p(X),\mathbf 0}}\),
+        that is, \(C_p(X)\) is \(sCFT^+\).
+  \item \(\plII\win \schStrongSelGame{\mc D_{C_p(X)}}{\Omega_{C_p(X),\mathbf 0}}\),
+        that is, \(C_p(X)\) is \(sCDFT^+\).
  \end{enumerate}
 \end{theorem}
 
@@ -305,12 +360,12 @@ We begin by extending theorem 3.8 of Tkachuk\cite{Tkachuk3} to equate the existe
 
  The equivalence of (c), (f), (h), and (i) are given as 3.8 of \cite{Tkachuk3}.
 
- The equivalence of (f) and (g) are given by Gruenhage\cite{Gruenhage1976}.
+ The equivalence of (f) and (g) are given by Gruenhage \cite{Gruenhage1976}.
   
- The equivalence of (b), (j), and (k) are due to Clontz's Menger preprint\cite{Clontz1}.
+ The equivalence of (b), (j), and (k) are due to Clontz \cite{Clontz1}.
 
- (k) \(\Leftrightarrow\) (h) follows from 3.18a of \cite{Tkachuk3}.
- Tkachuk refers to the \(sCDFT\) game at a point \(p\) and \(CLD(X,p)\).
+ (k) \(\Leftrightarrow\) (h) follows from 3.18a of \cite{Tkachuk3}, where
+ Tkachuk refers to the \(sCDFT_p\) game as \(CLD(X,p)\).
 \end{proof}
 
 In \cite{Tkachuk2}, Tkachuk showed that for \(T_{3.5}\) spaces \(X\), \(X\) is uncountable if and only if \(C_p(X)\) is discretely selective.
@@ -320,34 +375,15 @@ We can rewrite this in terms of games using the following proposition.
   For \(T_{3.5}\) spaces \(X\), \(X\) is uncountable if and only \(\plI\notprewin CD(C_p(X))\).
 \end{proposition}
 
-In fact this is part of a general trend for selection principles.
-To say \(X\) is discretely selective is to say that the selection principle given by setting \(\mathcal{A} = T_X\) and \(\mathcal{B}\) to be the closed discrete subsets of \(X\) is true.
 
-\begin{proposition}
-\(\schStrongSelProp{\mathcal{A}}{\mathcal{B}}\) if and only if \(\plI \notprewin\schStrongSelGame{\mathcal{A}}{\mathcal{B}}\).
-\end{proposition}
-\begin{proof}
- First suppose that \(\schStrongSelProp{\mathcal{A}}{\mathcal{B}}\) holds.
- Let \(\sigma\) be a tentative pre-determined strategy for \(\plI\) for \(\schStrongSelGame{\mathcal{A}}{\mathcal{B}}\).
- Then \(\{\sigma(n) : n \in \omega\} \subseteq \mathcal{A}\), and therefore there are \(B_n \in \sigma(n)\) for all \(n\) so that \(\bigcup_n B_n \in \mathcal{B}\).
- Thus \(\sigma\) is not a winning strategy for \(\plI\).
- So \(\plI \notprewin\schStrongSelGame{\mathcal{A}}{\mathcal{B}}\).
- 
- Now suppose that \(\schStrongSelProp{\mathcal{A}}{\mathcal{B}}\) is false.
- Then there is some sequence \(\{A_n : n \in \omega\} \subseteq \mathcal{A}\) with the property that whenever \(B_n \in A_n\) for all \(n\), \(\bigcup_n B_n \notin \mathcal{B}\).
- Then the pre-determined strategy \(\sigma(n) = A_n\) is winning for \(\plI\) for \(\schStrongSelGame{\mathcal{A}}{\mathcal{B}}\).
- Thus \(\plI \prewin\schStrongSelGame{\mathcal{A}}{\mathcal{B}}\).
-\end{proof}
-
-Thus if we require the strategies for I for \(CD(C_p(X))\) to be low information, then it must be that \(X\) is countable, and so \(C_p(X)\) is first countable.
 Combining this with several other results in the literature, we can see that the countability of \(X\) is equivalent to the existence of low information winning strategies for a variety of games.
 
 \begin{theorem}
 The following are equivalent for \(T_{3.5}\) spaces \(X\).
  \begin{enumerate}[a)]
   \item \(X\) is countable.
-  \item \(X\) is \(R^{+mark}\).
-  \item \(X\) is \(\Omega R^{+mark}\).
+  \item \(\plII\markwin \schStrongSelGame{\mc O_X}{\mc O_X}\), that is, \(X\) is \(R^{+mark}\).
+  \item \(\plII\markwin \schStrongSelGame{\Omega_X}{\Omega_X}\), that is, \(X\) is \(\Omega R^{+mark}\).
   \item \(\plI\prewin PO(X)\). 
   \item \(\plI\prewin FO(X)\).
   \item \(\plI\prewin\Omega FO(x)\).
@@ -356,8 +392,10 @@ The following are equivalent for \(T_{3.5}\) spaces \(X\).
   \item \(\plI\prewin \gruClusGame{C_p(X)}{\mathbf 0}\).
   \item \(\plI\prewin CL(C_p(X),\mathbf 0)\).
   \item \(\plI\prewin CD(C_p(X))\).
-  \item \(C_p(X)\) is \(sCFT^{+mark}\).
-  \item \(C_p(X)\) is \(sCDFT^{+mark}\).
+  \item \(\plII\markwin \schStrongSelGame{\Omega_{C_p(X),\mathbf 0}}{\Omega_{C_p(X),\mathbf 0}}\),
+        that is, \(C_p(X)\) is \(sCFT^{+mark}\).
+  \item \(\plII\markwin \schStrongSelGame{\mc D_{C_p(X)}}{\Omega_{C_p(X),\mathbf 0}}\),
+        that is, \(C_p(X)\) is \(sCDFT^{+mark}\).
  \end{enumerate}
 \end{theorem}
 
@@ -398,7 +436,7 @@ The following are equivalent for \(T_{3.5}\) spaces \(X\).
 
  It also clear that (f) implies (e), we will show that (a) implies (f).
  If \(X\) is countable, then so is \([X]^{<\omega}\), enumerate it as \(\{s_n : n \in \omega\}\).
- I's pre-determined strategy for \(\Omega FO(X)\) is to play \(s_n\) are round \(n\).
+ I's predetermined strategy for \(\Omega FO(X)\) is to play \(s_n\) are round \(n\).
  Clearly whatever II plays will be an \(\omega\)-cover.
  Thus (a) - (f) are equivalent.
 
@@ -409,9 +447,11 @@ The following are equivalent for \(T_{3.5}\) spaces \(X\).
 
  Clearly (h) implies (j) which in turn implies (k), which is equivalent to (a) as noted before this theorem.
 
- Clontz showed (h) and (i) are equivalent in his dissertation; it's not hard to prove this.
+ (h) \(\Rightarrow\) (i) is evident; for the converse, let \(\tau(n)=\bigcap_{m\leq n}\sigma(m)\)
+ where \(\sigma\) guarantees clustering. It follows that \(\tau\) guarantees that every subsequence
+ clusters, and thus guarantees convergence.
 
- Clontz showed that (c), (l), and (m) are equivalent in his Menger/CFT preprint \cite{Clontz1}.
+ Clontz showed that (c), (l), and (m) are equivalent in \cite{Clontz1}.
  This completes the proof.
 
  %Note that (c) implies (b) implies (a).
@@ -431,36 +471,28 @@ In \cite{Tkachuk3}, Tkachuk characterizes \(\plII\win\Omega FO(X)\) as the secon
 But they cannot be interchanged in general.
 \begin{proposition}
   Suppose \(X\) is \(T_1\).
-  Then \(\plII\tactwin\Omega PO(X)\) if and only if \(|X| > 2\).
+  Then \(\plII\tactwin\Omega PO(X)\) if and only if \(|X| > 1\).
 \end{proposition}
 \begin{proof}
-  First suppose that \(|X| = 1 \).
-  Say \(X = \{x\}\).
+  First suppose that \(X=\{x\}\).
   Then \(\plI\) wins \(\Omega PO(X)\) by just playing \(x\) in round 1.
   So \(\plII\) does not have a winning tactic for \(\Omega PO(X)\).
   
-  Now suppose that \(|X| > 2\).
-  We can then build an open cover which not an \(\omega\)-cover.
-  Let \(x_1 \neq x_2 \in X\).
-  As \(X\) is \(T_1\), points are closed, and so \(X \setminus \{x_2\}\) is open.
-  Also, we can find an open set \(U\) so that \(x_2 \in U\) and \(x_1 \notin U\).
-  The cover \(\{X \setminus \{x_2\}, U\}\) is an open cover of \(X\) which fails to have any open set which contains \(\{x_1,x_2\}\).
-  So it is not an \(\omega\)-cover.
-  
-  The tactic for \(\plII\) is then defined as follows.
-  \(\sigma(x) = X \setminus \{x_2\}\) if \(x \neq x_2\) and \(\sigma(x_2) = U\).
-  These are always valid plays for \(\plII\), and they fail to form an \(\omega\)-cover.
-  So this is a winning tactic for \(\plII\).
+  Now suppose that \(X\supseteq\{x_1,x_2\}\) for \(x_1\not=x_2\).
+  Then let \(\sigma(x_1)=X\setminus\{x_2\}\), and \(\sigma(x)=X\setminus\{x_1\}\)
+  otherwise. It follows that \(\{x_1,x_2\}\) is never contained in any
+  set played by \(\sigma\), so \(\sigma\) never produces an \(\omega\)-cover,
+  and thus is a winning tactic.
 \end{proof}
 
-However, if \(X\) is countable then \(X\) is \(\Omega R^{+mark}\) and so \(\plI\prewin \Omega FO(X)\). 
+However, if \(X\) is countable, then \(X\) is \(\Omega R^{+mark}\) and therefore \(\plI\prewin \Omega FO(X)\). 
 So \(\Omega PO(X)\) is a very different game than those described previously.
 
 \section{Strategies for player II for the Discrete Selection Game on \(C_p(X)\)}
 
 Now we turn our attention to the opponent.
-We will begin by analyzing these games not just for \(T_{3.5}\) spaces \(X\) or on \(C_p(X)\), but in general.
-First off we will look at games related to open covers.
+Our first observations hold for all spaces (not just \(T_{3.5}\) spaces or \(C_p(X)\)).
+Consider the following games related to open covers.
 
 \begin{proposition}
  The following are equivalent for all spaces \(X\).
@@ -470,7 +502,7 @@ First off we will look at games related to open covers.
   \item \(\plII\win FO(X)\).
   \item \(\plII\markwin FO(X)\).
   \item \(\plI\win \rothGame{X}\).
-  \item \(X\) is not \(R\), that is, \(\plI\prewin \rothGame{X}\).
+  \item \(\plI\prewin \rothGame{X}\), that is, \(X\) is not \(R\).
  \end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -503,7 +535,7 @@ First off we will look at games related to open covers.
  Thus (b) implies (d).
 \end{proof}
 
-Next we will consider games related to \(\omega\)-covers.
+Similar results hold for games related to \(\omega\)-covers.
 
 \begin{proposition}
 The following are equivalent for all spaces \(X\).
@@ -511,7 +543,7 @@ The following are equivalent for all spaces \(X\).
   \item \(\plII\win \Omega FO(X)\).
   \item \(\plII\markwin \Omega FO(X)\).
   \item \(\plI\win G_1(\Omega_X,\Omega_X)\).
-  \item \(X\) is not \(\Omega R\), that is, \(\plI\prewin G_1(\Omega_X,\Omega_X)\).
+  \item \(\plI\prewin G_1(\Omega_X,\Omega_X)\), that is, \(X\) is not \(\Omega R\).
  \end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -539,13 +571,13 @@ The following are equivalent for all spaces \(X\).
 \end{proof}
 
 \(\Omega R\) is equivalent to all finite powers being \(R\): see theorem 3 of \cite{Scheepers1997}. 
-It is consistent that these notions do not coincide: see theorem 9 of \cite{BABINKOSTOVA2013} for a consistent example of a \(T_{3.5}\) \(R\) space \(X\) such that \(X^2\) is not \(R\), so therefore \(X\) is not \(\Omega R\). 
+But \(\Omega R\) and \(R\) do not coincide in all models of \(ZFC\): see theorem 9 of \cite{BABINKOSTOVA2013} for a consistent example of a \(T_{3.5}\) \(R\) space \(X\) such that \(X^2\) is not \(R\), so therefore \(X\) is not \(\Omega R\). 
 Note the distinction with strategies for the opponent, as \(R^+\) is equivalent to \(\Omega R^+\) and \(R^{+mark}\) is equivalent to \(\Omega R^{+mark}\).
 
 Finally we will examine the point-picking games.
 
-\begin{proposition}
-The following properties imply lower properties for all spaces \(X\).
+\begin{proposition}\label{lowerPropA}
+The following properties imply lower properties for all spaces \(X\) and \(x\in X\).
  \begin{enumerate}[a)]
   \item \(\plI\win\schStrongSelGame{\mc D_X}{\Omega_{X,x}}\).
   \item \(\plII\win CL(X,x)\).
@@ -570,8 +602,8 @@ The following properties imply lower properties for all spaces \(X\).
  This verifies (c) implies (d).
 \end{proof}
 
-\begin{proposition}
- The following properties imply lower properties for all spaces \(X\).
+\begin{proposition}\label{lowerPropB}
+ The following properties imply lower properties for all spaces \(X\) and \(x\in X\).
  \begin{enumerate}[a)]
   \item \(\plI\prewin\schStrongSelGame{\mc D_X}{\Omega_{X,x}}\).
   \item \(\plII\markwin CL(X,x)\).
@@ -648,8 +680,9 @@ The equivalence of (a) and (m) answers Question 4.6 of Tkachuk in \cite{Tkachuk3
 \section{Open Problems}
 
 \begin{question}
- In \cite{Tkachuk2}, Tkachuk found sufficient conditions for \(C_p(X,\mathbb{I})\) to be discretely selective. What happens when we play the discrete selection game on this function space?
- Specifically, what game on \(X\) corresponds to essential uncountability (suppose maybe that \(X\) is \(\omega\)-monolithic and has countable tightness)? 
+  In \cite{Tkachuk2}, Tkachuk found sufficient conditions for \(C_p(X,\mathbb{I})\) 
+  to satisfy the discrete selection princple. 
+  What happens when we play the discrete selection game on \(C_p(X,\mathbb I)\)?
 \end{question}
 
 \begin{question}
@@ -657,20 +690,20 @@ The equivalence of (a) and (m) answers Question 4.6 of Tkachuk in \cite{Tkachuk3
 \end{question}
 
 \begin{question}
- It is known that it is consistent for \(R\) and \(\Omega R\) to be distinct notions.
+ There is a model of \(ZFC\) where \(R\) and \(\Omega R\) are distinct properties.
  Is it consistent that they are the same?
  That is, is there a universe of ZFC in which every \(R\) space is also \(\Omega R\)?
 \end{question}
 
 \begin{question}
- There are other selection principles and corresponding games.
- In particular different restrictions on covers can be employed.
- Are these games related to some point picking game on \(C_p(X)\)?
+ All the games played in this paper had length \(\omega\).
+ Do these equivalences continue to hold for longer games?
 \end{question}
 
 \begin{question}
- All the games played in this paper had length \(\omega\).
- Do these equivalences continue to hold for longer games?
+ The implications in Propositions \ref{lowerPropA} and \ref{lowerPropB} reverse
+ when \(X=C_p(Y)\) for some \(T_{3.5}\) space \(Y\). When in general can these
+ implications reverse?
 \end{question}
 
 %\section*{Acknowledgements}
